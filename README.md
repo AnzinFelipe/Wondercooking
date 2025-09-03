@@ -22,9 +22,11 @@ Wondercooking é uma aplicação web feita para pesquisa, visualização e compa
 <a href = "https://docs.google.com/document/d/1IX6r9FOJcd_eR8FyVsrMSKdi9eVuUcwD_jcz5_sBhKQ/edit?tab=t.0" target = "_blanck">Link do Docs</a>
 
 Backlog:
+\
 <img src="Imagens/Backlog.png" alt = "Backlog" width = "600">
 
 Quadro sprint:
+\
 <img src="Imagens/Quadro_sprint.png" alt = "Quadro sprint" width = "600">
 
 ## 🎨 Figma:
