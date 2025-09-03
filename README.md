@@ -17,9 +17,9 @@ Wondercooking é uma aplicação web feita para pesquisa, visualização e compa
 
 ## 📝 Jira:
 
-[Link do Jira](https://cesar-team-pz3i66at.atlassian.net/jira/software/projects/WON/boards/34)
+<a href = "https://cesar-team-pz3i66at.atlassian.net/jira/software/projects/WON/boards/34" target = "_blanck">Link do Jira</a>
 
-[Link do Docs](https://docs.google.com/document/d/1IX6r9FOJcd_eR8FyVsrMSKdi9eVuUcwD_jcz5_sBhKQ/edit?tab=t.0)
+<a href = "https://docs.google.com/document/d/1IX6r9FOJcd_eR8FyVsrMSKdi9eVuUcwD_jcz5_sBhKQ/edit?tab=t.0" target = "_blanck">Link do Docs</a>
 
 Backlog:
 <img src="Imagens/Backlog.png" alt = "Backlog" width = "600">
@@ -29,7 +29,7 @@ Quadro sprint:
 
 ## 🎨 Figma:
 
-[Screencast](https://www.youtube.com)
+<a href = "https://www.youtube.com" target = "_blanck">Screencast</a>
 
 <img src="" alt = "Figma" width = "400">
 
