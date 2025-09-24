@@ -9,11 +9,20 @@ class Perfil(models.Model):
         return self.nome
 
 class Postagens(models.Model):
-    autor = models.ForeignKey(Perfil, on_delete=models.CASCADE)
+    autor = models.ForeignKey(Perfil, on_delete = models.CASCADE)
     titulo = models.CharField(max_length = 100, blank = False)
     descricao = models.TextField(blank = False)
-    data = models.DateTimeField(auto_now_add = True)
+    data = models.DateTimeField("Publicado em: ", auto_now_add = True)
     imagem = models.ImageField(upload_to='images/')
 
     def __str__(self):
         return f"{self.titulo} - Autor: {self.autor}"
+    
+class Comentario(models.Model):
+    usuario = models.ForeignKey(Perfil, on_delete = models.CASCADE)
+    postagem = models.ForeignKey(Postagens, on_delete = models.CASCADE)
+    texto = models.TextField(blank = False)
+    data = models.DateTimeField("Publicado em: ", auto_now_add = True)
+
+    def __str__(self):
+        return f"Comentário de {self.usuario} na postagem: {self.postagem}"
