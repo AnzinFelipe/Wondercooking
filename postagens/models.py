@@ -13,6 +13,7 @@ class Postagens(models.Model):
     titulo = models.CharField(max_length = 100, blank = False)
     descricao = models.TextField(blank = False)
     data = models.DateTimeField(auto_now_add = True)
+    imagem = models.ImageField(upload_to='images/')
 
     def __str__(self):
         return f"{self.titulo} - Autor: {self.autor}"
