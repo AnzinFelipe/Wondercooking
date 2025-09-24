@@ -1,0 +1,34 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wondercooking</title>
+    <link rel = "stylesheet" href = "{% static 'postagens/css/style.css' %}">
+</head>
+<body>
+    {% block header %}
+    <header>
+        <ul>
+            <li>
+                <h1>Wondercooking</h1>
+            </li>
+            <li>
+                <div class = "bloco_pesquisa">
+                    <input type = "text" class = "pesquisa" placeholder = "Pesquisar...">
+                </div>
+            </li>
+            <li>
+                <div class = "signs">
+                    <a href = "">Log in</a>
+                    <a href = "">Sign in</a>
+                </div>    
+            </li>
+        </ul>
+    </header>
+    {% endblock %}
+    {% block conteudo %} {% endblock %}
+</body>
+</html>
