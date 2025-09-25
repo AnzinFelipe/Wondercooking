@@ -1,10 +1,11 @@
 from django.shortcuts import render, redirect
-from .models import postagem
+from .models import postagem, Perfil
 from django.contrib.auth import login
 from django.contrib.auth.forms import UserCreationForm
 from django.urls import reverse
 from django.http import HttpResponseRedirect
-from postagens.forms import PostForm
+from .forms import PostForm
+from django.contrib.auth.decorators import login_required
 
 
 
@@ -35,12 +36,16 @@ def registrar(request):
         form = UserCreationForm()
     return render(request, 'registration/register.html', {'form': form})
 
+@login_required
 def criar_post(request):
-    if request.method =='POST':
-        form = PostForm(request.POST, request.FILE)
+    if request.method == 'POST':
+        form = PostForm(request.POST, request.FILES)
         if form.is_valid():
             form = form.save(commit=False)
+            form.autor = Perfil.objects.get(nome=request.user.username)
             form.save()
             return HttpResponseRedirect(reverse('home'))
-    form= PostForm()
+    else:
+        form = PostForm()
+    
     return render(request, 'criar_post.html', {'form': form})
