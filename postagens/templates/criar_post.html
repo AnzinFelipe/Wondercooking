@@ -1,0 +1,14 @@
+{%extends "base.html" %}
+
+{%block criar%} Criar postagem{%endblock criar%}
+
+{%block content%}
+
+    <a href="{%url 'criar_post' %}" > Criar uma postagem</a>
+
+    <form method="POST" action="{% if request.method == 'POST' %} {%url 'criar_post'%} {%endif%}" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{form.as_p}}
+        <button type="submit">Criar</button>
+    </form>
+{%endblock content%}
