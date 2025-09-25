@@ -4,11 +4,15 @@ from .models import postagem
 # Create your views here.
 
 def home(request):
-    return render(request, 'home.html')
-
-def home(request):
     posts = postagem.objects.all()
-    context = {
+    contexto = {
         'posts': posts
     }
-    return render(request, 'home.html', context)
+    return render(request, 'home.html', contexto)
+
+def post_detalhe(request, id):
+    post = postagem.objects.get(pk = id)
+    contexto = {
+        'post' : post
+    }
+    return render(request, 'post_detalhe.html', contexto)

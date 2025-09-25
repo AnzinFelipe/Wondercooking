@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block conteudo %}
+    <link rel="stylesheet" href = "{% static 'postagens/css/detalhe.css' %}">
+    <div class="post">
+        <h3>{{ post.titulo }}</h3>
+        <p><strong>Autor:</strong> {{ post.autor.nome }}</p>
+        <p><strong>Data:</strong> {{ post.data }}</p>
+        <p>{{ post.descricao }}</p>
+        {% if post.imagem %}
+            <img src="{{ post.imagem.url }}" alt="{{ post.titulo }}" width="300">
+        {% endif %}
+    </div>
+{% endblock %}
+
+
+
+
