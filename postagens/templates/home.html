@@ -1,14 +1,25 @@
 {% extends "base.html" %}
 
-{%block title%}
-
-    <h2>Todos os posts</h2>
-    {{posts}}
-
-{%endblock%}
-
-
+{% block title %}Todos os posts - Wondercooking{% endblock %}
 
 {% block conteudo %}
     <h1>Bem vindo ao Wondercooking!</h1>
+    <h2>Todos os posts</h2>
+    
+    {% if posts %}
+        {% for post in posts %}
+            <div class="post">
+                <h3>{{ post.titulo }}</h3>
+                <p><strong>Autor:</strong> {{ post.autor.nome }}</p>
+                <p><strong>Data:</strong> {{ post.data }}</p>
+                <p>{{ post.descricao }}</p>
+                {% if post.imagem %}
+                    <img src="{{ post.imagem.url }}" alt="{{ post.titulo }}" width="300">
+                {% endif %}
+            </div>
+            <hr>
+        {% endfor %}
+    {% else %}
+        <p>Nenhum post encontrado.</p>
+    {% endif %}
 {% endblock %}

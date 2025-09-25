@@ -6,10 +6,9 @@ from .models import postagem
 def home(request):
     return render(request, 'home.html')
 
-def post_list(request):
-    nome_template= 'home.html'
+def home(request):
     posts = postagem.objects.all()
-    context={
+    context = {
         'posts': posts
-        }
-    return render(request, nome_template, context)
+    }
+    return render(request, 'home.html', context)
