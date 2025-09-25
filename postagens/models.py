@@ -8,7 +8,7 @@ class Perfil(models.Model):
     def __str__(self):
         return self.nome
 
-class Postagens(models.Model):
+class postagem(models.Model):
     autor = models.ForeignKey(Perfil, on_delete = models.CASCADE)
     titulo = models.CharField(max_length = 100, blank = False)
     descricao = models.TextField(blank = False)
@@ -20,7 +20,7 @@ class Postagens(models.Model):
     
 class Comentario(models.Model):
     usuario = models.ForeignKey(Perfil, on_delete = models.CASCADE)
-    postagem = models.ForeignKey(Postagens, on_delete = models.CASCADE)
+    postagem = models.ForeignKey(postagem, on_delete = models.CASCADE)
     texto = models.TextField(blank = False)
     data = models.DateTimeField("Publicado em: ", auto_now_add = True)
 
