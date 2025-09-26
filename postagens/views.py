@@ -14,6 +14,8 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 # Create your views here.
 
 def home(request):
+    if not request.user.is_authenticated:
+        return redirect('registrar')
     posts = postagem.objects.all()
     contexto = {
         'posts': posts
