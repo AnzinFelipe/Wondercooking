@@ -23,8 +23,13 @@
             </li>
             <li>
                 <div class = "signs">
-                    <a href = "{% url 'login' %}">Log in</a>
-                    <a href = "{% url 'registrar' %}">Sign up</a>
+                    {%if user.is_authenticated %}
+                        {{user.username}}
+                        <a href = "{% url 'login' %}">Log out</a>
+                    {%else%}
+                        <a href = "{% url 'login' %}">Log in</a>
+                        <a href = "{% url 'registrar' %}">Sign up</a>
+                    {%endif%}
                 </div>    
             </li>
         </ul>
