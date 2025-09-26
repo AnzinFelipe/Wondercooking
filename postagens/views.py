@@ -40,6 +40,14 @@ def post_detalhe(request, id):
         novo_comentario.save()
         return redirect('home')  
     return render(request, 'post_detalhe.html', contexto)
+@login_required
+def favoritos(request):
+    posts = postagem.objects.all()
+    contexto = {
+        'posts': posts
+    }
+    return render(request, 'favoritos.html', contexto)
+
 
 def registrar(request):
     if request.method == 'POST':
@@ -113,4 +121,15 @@ class LikePostView(LoginRequiredMixin, View):
             post.likes.remove(request.user)
         else:
             post.likes.add(request.user) 
+        return redirect('home')
+    
+class FavoritePostView(LoginRequiredMixin, View):
+    def post(self, request, post_id):
+        post = get_object_or_404(postagem, pk=post_id)
+        
+        if request.user in post.favoritos.all():
+            post.favoritos.remove(request.user)
+        else:
+
+            post.favoritos.add(request.user) 
         return redirect('home')
