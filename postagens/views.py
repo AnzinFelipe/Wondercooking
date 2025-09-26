@@ -6,6 +6,7 @@ from django.urls import reverse
 from django.http import HttpResponseRedirect
 from .forms import PostForm
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.models import User
 
 
 
@@ -30,6 +31,7 @@ def registrar(request):
         form = UserCreationForm(request.POST)
         if form.is_valid():
             user = form.save()
+            Perfil.objects.create(user=user)
             login(request, user)
             return redirect('/')
     else:
@@ -42,7 +44,7 @@ def criar_post(request):
         form = PostForm(request.POST, request.FILES)
         if form.is_valid():
             form = form.save(commit=False)
-            form.autor = Perfil.objects.get(nome=request.user.username)
+            form.autor = Perfil.objects.get(user=request.user)
             form.save()
             return HttpResponseRedirect(reverse('home'))
     else:

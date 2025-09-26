@@ -5,7 +5,7 @@
     <link rel="stylesheet" href = "{% static 'postagens/css/detalhe.css' %}">
     <div class="post">
         <h3>{{ post.titulo }}</h3>
-        <p><strong>Autor:</strong> {{ post.autor.nome }}</p>
+        <p><strong>Autor:</strong> {{ post.autor.user.username }}</p>
         <p><strong>Data:</strong> {{ post.data }}</p>
         <p>{{ post.descricao }}</p>
         {% if post.imagem %}
