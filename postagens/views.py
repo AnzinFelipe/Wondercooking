@@ -28,6 +28,8 @@ def post_detalhe(request, id):
         'comentarios' : comentarios,
     }
     if request.method == 'POST':
+        if not request.user.is_authenticated:
+            return redirect('/accounts/login/?next=' + request.path)
         texto = request.POST.get('texto')
         usuario = Perfil.objects.get(user = request.user)
         post_comentario = post
@@ -36,7 +38,7 @@ def post_detalhe(request, id):
             return render (request, 'post_detalhe.html', {'erro': 'Escreva alguma coisa'}) 
         novo_comentario = Comentario(texto = texto, usuario = usuario, postagem = post_comentario)
         novo_comentario.save()
-        return redirect('home')   
+        return redirect('home')  
     return render(request, 'post_detalhe.html', contexto)
 
 def registrar(request):
@@ -88,7 +90,7 @@ def registrar(request):
     else:
         return render(request, 'registration/register.html')
 
-@login_required
+@login_required(login_url='/accounts/login/')
 def criar_post(request):
     if request.method == 'POST':
         Titulo= request.POST.get('Título da publicação')
