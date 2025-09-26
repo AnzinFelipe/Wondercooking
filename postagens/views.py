@@ -4,7 +4,6 @@ from django.contrib.auth import login
 from django.contrib.auth.forms import UserCreationForm
 from django.urls import reverse
 from django.http import HttpResponseRedirect
-from .forms import PostForm
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 
@@ -41,13 +40,13 @@ def registrar(request):
 @login_required
 def criar_post(request):
     if request.method == 'POST':
-        form = PostForm(request.POST, request.FILES)
-        if form.is_valid():
-            form = form.save(commit=False)
-            form.autor = Perfil.objects.get(user=request.user)
-            form.save()
-            return HttpResponseRedirect(reverse('home'))
-    else:
-        form = PostForm()
-    
-    return render(request, 'criar_post.html', {'form': form})
+        Titulo= request.POST.get('Título da publicação')
+        Descrição= request.POST.get('Descrição do post')
+        imagem= request.FILES.get('Imagem do post')
+        perfil = Perfil.objects.get(user=request.user)
+        if not all([Titulo, Descrição, imagem]):
+            return render (request, 'criar_post.html', {'erro': 'Escreva alguma coisa'})  
+        novo_post = postagem(titulo=Titulo, descricao=Descrição, imagem=imagem, autor=perfil)
+        novo_post.save()
+        return HttpResponseRedirect(reverse('home'))
+    return render(request, 'criar_post.html')

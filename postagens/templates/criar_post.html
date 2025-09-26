@@ -6,9 +6,20 @@
 
     <a href="{%url 'criar_post' %}" > Criar uma postagem</a>
 
-    <form method="POST" action="{% if request.method == 'POST' %} {%url 'criar_post'%} {%endif%}" enctype="multipart/form-data">
+   <form method="POST" enctype="multipart/form-data">
         {% csrf_token %}
-        {{form.as_p}}
-        <button type="submit">Criar</button>
+        <label for="titulo">Título da publicação:</label>
+        <input type="text" name="Título da publicação" id="titulo" required>
+
+        <label for="descricao">Descrição do post:</label>
+        <textarea name="Descrição do post" id="descricao" required></textarea>
+
+        <label for="imagem">Imagem do post:</label>
+        <input type="file" name="Imagem do post" id="imagem" required>
+
+        <button type="submit">Criar Post</button>
+        {% if erro %}
+            <p style="color:red;">{{ erro }}</p>
+        {% endif %}
     </form>
 {%endblock conteudo%}

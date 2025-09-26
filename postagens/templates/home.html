@@ -10,7 +10,7 @@
         {% for post in posts %}
             <div class="post">
                 <a href = "/post_detalhe/{{ post.id }}"><h3>{{ post.titulo }}</h3></a>
-                <p><strong>Autor:</strong> {{ post.autor.nome }}</p>
+                <p><strong>Autor:</strong> {{ post.autor.user.username }}</p>
                 <p><strong>Data:</strong> {{ post.data }}</p>
                 <p>{{ post.descricao }}</p>
                 {% if post.imagem %}
