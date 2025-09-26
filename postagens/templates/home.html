@@ -16,6 +16,11 @@
                 {% if post.imagem %}
                     <img src="{{ post.imagem.url }}" alt="{{ post.titulo }}" width="300">
                 {% endif %}
+                <p><strong>Likes:</strong> {{ post.likes.count }}</p>
+                <form method="post" action="{% url 'like_post' post.id %}">
+                    {% csrf_token %}
+                    <button type="submit">Curtir</button>
+                </form>
             </div>
             <hr>
         {% endfor %}

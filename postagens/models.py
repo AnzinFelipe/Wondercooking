@@ -14,7 +14,7 @@ class postagem(models.Model):
     descricao = models.TextField(blank = False)
     data = models.DateTimeField("Publicado em: ", auto_now_add = True)
     imagem = models.ImageField(upload_to='images/')
-
+    likes = models.ManyToManyField(User, blank=True)
     def __str__(self):
         return f"{self.titulo} - Autor: {self.autor}"
     

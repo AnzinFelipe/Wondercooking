@@ -1,4 +1,6 @@
-from django.shortcuts import render, redirect
+from django.views import View
+from django.http import Http404
+from django.shortcuts import render, redirect, get_object_or_404
 from .models import postagem, Perfil
 from django.contrib.auth import login, authenticate
 from django.urls import reverse
@@ -6,7 +8,7 @@ from django.http import HttpResponseRedirect
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.db import IntegrityError
-
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 
 # Create your views here.
@@ -87,4 +89,14 @@ def criar_post(request):
         novo_post.save()
         return HttpResponseRedirect(reverse('home'))
     return render(request, 'criar_post.html')
+
+    
+class LikePostView(LoginRequiredMixin, View):
+    def post(self, request, post_id):
+        post = get_object_or_404(postagem, pk=post_id)
         
+        if request.user in post.likes.all():
+            post.likes.remove(request.user)
+        else:
+            post.likes.add(request.user) 
+        return redirect('home')
