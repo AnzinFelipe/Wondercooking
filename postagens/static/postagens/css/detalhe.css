@@ -9,3 +9,15 @@
 .post p {
     width: 600px;
 }
+
+.comentarios {
+    display: flex;
+    flex-direction: column;
+    align-self: center;
+    font-size: larger;
+    margin: 20px;
+}
+
+.comentario {
+    align-items: center;
+}

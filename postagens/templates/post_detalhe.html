@@ -11,6 +11,32 @@
         {% if post.imagem %}
             <img src="{{ post.imagem.url }}" alt="{{ post.titulo }}" width="300">
         {% endif %}
+        {%if comentarios %}
+            <p>Comentários: {{comentarios.count}}</p>
+        {% endif %}
+    </div>
+    <div class "criar_comentario">
+        <form method = "POST" action = "{% url 'post_detalhe' post.id %}">  
+            {% csrf_token %}
+            <label for = "texto">Deixe um comentário:</label>
+            <textarea name = "texto" id = "texto" required></textarea>
+
+            <button type="submit">Publicar</button>
+            {% if erro %}
+                <p style="color:red;">{{ erro }}</p>
+            {% endif %}
+        </form>
+    </div>
+    <div class "comentarios">
+        {% for comentario in comentarios%}
+            <div class "comentario">
+                <div class "coment_detalhe">
+                    <h2>{{ comentario.usuario }}</h2>
+                    <p>Feito em: {{ comentario.data }}</p>
+                </div>
+                    <p>{{ comentario.texto }}</p>
+            </div>
+        {% endfor %}
     </div>
 {% endblock %}
 

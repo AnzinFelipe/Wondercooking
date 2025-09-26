@@ -1,7 +1,7 @@
 from django.views import View
 from django.http import Http404
 from django.shortcuts import render, redirect, get_object_or_404
-from .models import postagem, Perfil
+from .models import Comentario, postagem, Perfil
 from django.contrib.auth import login, authenticate
 from django.urls import reverse
 from django.http import HttpResponseRedirect
@@ -22,9 +22,21 @@ def home(request):
 
 def post_detalhe(request, id):
     post = postagem.objects.get(pk = id)
+    comentarios = Comentario.objects.filter(postagem = post).order_by("-data")
     contexto = {
-        'post' : post
+        'post' : post,
+        'comentarios' : comentarios,
     }
+    if request.method == 'POST':
+        texto = request.POST.get('texto')
+        usuario = Perfil.objects.get(user = request.user)
+        post_comentario = post
+
+        if not texto:
+            return render (request, 'post_detalhe.html', {'erro': 'Escreva alguma coisa'}) 
+        novo_comentario = Comentario(texto = texto, usuario = usuario, postagem = post_comentario)
+        novo_comentario.save()
+        return redirect('home')   
     return render(request, 'post_detalhe.html', contexto)
 
 def registrar(request):
