@@ -1,11 +1,11 @@
 from django.shortcuts import render, redirect
 from .models import postagem, Perfil
-from django.contrib.auth import login
-from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth import login, authenticate
 from django.urls import reverse
 from django.http import HttpResponseRedirect
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
+from django.db import IntegrityError
 
 
 
@@ -27,15 +27,52 @@ def post_detalhe(request, id):
 
 def registrar(request):
     if request.method == 'POST':
-        form = UserCreationForm(request.POST)
-        if form.is_valid():
-            user = form.save()
-            Perfil.objects.create(user=user)
-            login(request, user)
-            return redirect('/')
+        username = request.POST.get('username')
+        senha = request.POST.get('senha')
+        senhaconfirmar = request.POST.get('senhaconfirmar')
+        email = request.POST.get('email', '')
+        erros = []
+        if not username:
+            erros.append('Nome de usuário é obrigatório')
+        elif len(username) < 5:
+            erros.append('Nome de usuário deve ter pelo menos 5 caracteres')
+        elif User.objects.filter(username=username).exists():
+            erros.append('Este nome de usuário já existe')
+        if not senha:
+            erros.append('Senha é obrigatória')
+        elif len(senha) < 8:
+            erros.append('Senha deve ter pelo menos 8 caracteres')
+        
+        if senha != senhaconfirmar:
+            erros.append('As senhas não coincidem')
+        
+        if email and User.objects.filter(email=email).exists():
+            erros.append('Este email já está em uso')
+        if not erros:
+            try:
+                user = User.objects.create_user(
+                    username=username,
+                    password=senha,
+                    email=email
+                )
+                Perfil.objects.create(user=user)
+                user = authenticate(request, username=username, password=senha)
+                if user is not None:
+                    login(request, user)
+                    return redirect('/')
+                else:
+                    erros.append('Erro ao fazer login')
+                    
+            except IntegrityError:
+                erros.append('Erro ao criar usuário')
+        if erros:
+            return render(request, 'registration/register.html', {
+                'errors': erros,
+                'username': username,
+                'email': email
+            })
     else:
-        form = UserCreationForm()
-    return render(request, 'registration/register.html', {'form': form})
+        return render(request, 'registration/register.html')
 
 @login_required
 def criar_post(request):
@@ -50,3 +87,4 @@ def criar_post(request):
         novo_post.save()
         return HttpResponseRedirect(reverse('home'))
     return render(request, 'criar_post.html')
+        
