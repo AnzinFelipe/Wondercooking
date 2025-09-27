@@ -55,7 +55,7 @@ Dupla 001: [Link de acesso.](https://docs.google.com/document/d/1VMShdnzmD7LD9jP
 
 
 
-Dupla 002:
+Dupla 002: [Link de acesso.](https://docs.google.com/document/d/1eHmU18Bjz6BKVYZzzzeMdUzSkjeLxBpYUKqnVwqAahE/edit?usp=sharing)
 
 
 
