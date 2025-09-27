@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Wondercooking</title>
     <meta http-equiv="U-UA-Compatible" content="IE=edge">
-    <link rel = "stylesheet" href = "{% static 'postagens/css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'postagens/css/style.css' %}">
     {% block extra_css %}{% endblock %}
 </head>
 <body>
@@ -15,33 +15,35 @@
     <header>
         <ul>
             <li>
-                <h1>Wondercooking</h1>                         {%block criar%} {%endblock criar%}
-            </li>
-            <li>
-                <div class = "bloco_pesquisa">
-                    <input type = "text" class = "pesquisa" placeholder = "Pesquisar...">
+                <div class="signs">
+                    {% if user.is_authenticated %}
+                        {{ user.username }}
+                        <a href="{% url 'login' %}">Log out</a>
+                    {% else %}
+                        <a href="{% url 'login' %}">Log in</a>
+                        <a href="{% url 'registrar' %}">Sign up</a>
+                    {% endif %}
                 </div>
             </li>
             <li>
-                <div class = "signs">
-                    {%if user.is_authenticated %}
-                        {{user.username}}
-                        <a href = "{% url 'login' %}">Log out</a>
-                    {%else%}
-                        <a href = "{% url 'login' %}">Log in</a>
-                        <a href = "{% url 'registrar' %}">Sign up</a>
-                    {%endif%}
-                </div>    
+                <h1>Wondercooking</h1>
+                {% block criar %}{% endblock criar %}
+            </li>
+            <li>
+                <div class="bloco_pesquisa">
+                    <input type="text" class="pesquisa" placeholder="Pesquisar...">
+                    <button type="button">Buscar</button>
+                </div>
             </li>
         </ul>
     </header>
     {% endblock %}
 
-    {% block conteudo %} {% endblock %}
+    {% block conteudo %}{% endblock %}
 
-    {%block contect%} {%endblock%}
+    {% block contect %}{% endblock %}
 
-    {%block footer%} 
+    {% block footer %}
         <footer>
         </footer>
     {% endblock %}
