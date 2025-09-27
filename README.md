@@ -46,4 +46,22 @@ Visualize nosso protótipo Lo-fi pelo Figma clicando aqui:
 
 </details>
 
+<details>
+<summary>Entrega 02:</summary>
+
+Segue abaixo links para acessar a documentação da programação em par:
+
+Dupla 001: [Link de acesso.](https://docs.google.com/document/d/1VMShdnzmD7LD9jPJXrcCvs5p0LIE16-E2SSJfQTupZ0/edit?usp=sharing)
+
+
+
+Dupla 002: [Link de acesso.](https://docs.google.com/document/d/1eHmU18Bjz6BKVYZzzzeMdUzSkjeLxBpYUKqnVwqAahE/edit?usp=sharing)
+
+
+
+Dupla 003: 
+
+
+
+</details>
 ---
