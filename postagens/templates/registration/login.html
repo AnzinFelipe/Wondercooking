@@ -1,33 +1,39 @@
-{% block content %}
 
+{% load static %}
+{% block content %}
+<link rel="stylesheet" href="{% static 'postagens/css/login.css' %}">
+<div class="formulario-login">
   {% if form.errors %}
-    <p>Sua senha ou usuário estão incorretos</p>
+    <p class="mensagem">Sua senha ou usuário estão incorretos</p>
   {% endif %}
 
   {% if next %}
     {% if user.is_authenticated %}
-      <p>Sua conta não tem acesso a essa página</p>
+      <p class="mensagem">Sua conta não tem acesso a essa página</p>
     {% else %}
-      <p>Logue para ter acesso a essa página</p>
+      <p class="mensagem">Logue para ter acesso a essa página</p>
     {% endif %}
   {% endif %}
 
   <form method="post" action="{% url 'login' %}">
     {% csrf_token %}
-    <table>
+    <table class="tabela">
       <tr>
-        <td>{{ form.username.label_tag }}</td>
-        <td>{{ form.username }}</td>
+        <td class="celula">{{ form.username.label_tag }}</td>
+        <td class="celula">{{ form.username }}</td>
       </tr>
       <tr>
-        <td>{{ form.password.label_tag }}</td>
-        <td>{{ form.password }}</td>
+        <td class="celula">{{ form.password.label_tag }}</td>
+        <td class="celula">{{ form.password }}</td>
       </tr>
     </table>
-    <input type="submit" value="login" />
+    <input type="submit" class="botao-login" value="Login" />
     <input type="hidden" name="next" value="{{ next }}" />
   </form>
 
-  <p><a href="{% url 'password_reset' %}">Esqueceu sua senha?</a></p>
+  <p class="mensagem">
+    <a href="{% url 'password_reset' %}" class="link-senha">Esqueceu sua senha?</a>
+  </p>
+</div>
 
 {% endblock %}

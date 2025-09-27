@@ -9,17 +9,10 @@ body {
 }
 
 header {
-    background-color: rgb(230, 118, 151);
+    background-color: rgb(186, 113, 162);
     padding: 20px;
 }   
 
-header::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: rgba(255, 255, 255, 0.5);
-  border-bottom-left-radius: 28px;
-}
 
 header ul {
   position: relative;
@@ -39,14 +32,13 @@ header ul {
 
 .signs a {
   text-decoration: none;
-  color: #0f5f7c;
+  color: #502A50;
 }
 
 header h1 {
   justify-self: center;
   font-size: 2rem;
-  color: #0b3d52;
-  text-shadow: 0 1px 2px rgba(255, 255, 255, 0.7);
+  color: #502A50;
 }
 
 .bloco_pesquisa {
@@ -65,7 +57,7 @@ header h1 {
   padding: 6px 12px;
   border: none;
   border-radius: 20px;
-  background: #0f5f7c;
+  background: #502A50;
   color: #fff;
   cursor: pointer;
 }
