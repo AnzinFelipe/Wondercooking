@@ -3,20 +3,34 @@
 
 {% block conteudo %}
     <link rel="stylesheet" href = "{% static 'postagens/css/detalhe.css' %}">
-    <div class="post">
+    <div class = "post">
         <h3>{{ post.titulo }}</h3>
         <p><strong>Autor:</strong> {{ post.autor.user.username }}</p>
-        <p><strong>Data:</strong> {{ post.data }}</p>
         <p>{{ post.descricao }}</p>
         {% if post.imagem %}
-            <img src="{{ post.imagem.url }}" alt="{{ post.titulo }}" width="300">
+        <img src="{{ post.imagem.url }}" alt="{{ post.titulo }}" width="300">
         {% endif %}
-        {%if comentarios %}
+        <p><strong>Postado em:</strong> {{ post.data }}</p>
+        <div class = "miscelaneas">
+            <form method="post" action="{% url 'like_post' post.id %}">
+                {% csrf_token %}
+                <button type="submit">
+                    {% if request.user in post.likes.all %}👍 Curtido{% else %}👍 Curtir{% endif %} ({{ post.likes.count }})
+                </button>
+            </form>
+            <form method="post" action="{% url 'favorite_post' post.id %}">
+                {% csrf_token %}
+                <button type="submit">
+                    {% if request.user in post.favoritos.all %}★ Favoritado{% else %}☆ Favoritar{% endif %}
+                </button>
+            </form>
+            {%if comentarios %}
             <p>Comentários: {{comentarios.count}}</p>
-        {% endif %}
+            {% endif %}
+        </div>
     </div>
-    <div class "criar_comentario">
-        <form method = "POST" action = "{% url 'post_detalhe' post.id %}">  
+    <div class = "criar_comentario">
+        <form class = "coment_form" method = "POST" action = "{% url 'post_detalhe' post.id %}">  
             {% csrf_token %}
             <label for = "texto">Deixe um comentário:</label>
             <textarea name = "texto" id = "texto" required></textarea>
@@ -27,12 +41,12 @@
             {% endif %}
         </form>
     </div>
-    <div class "comentarios">
+    <div class = "comentarios">
         {% for comentario in comentarios%}
-            <div class "comentario">
-                <div class "coment_detalhe">
-                    <h2>{{ comentario.usuario }}</h2>
-                    <p>Feito em: {{ comentario.data }}</p>
+            <div class = "comentario">
+                <div class = "coment_detalhe">
+                    <p>{{ comentario.usuario }}</p>
+                    <p id = "coment_data" >Feito em: {{ comentario.data }}</p>
                 </div>
                     <p>{{ comentario.texto }}</p>
             </div>

@@ -7,8 +7,6 @@
 
 header {
     background-color: rgb(230, 118, 151);
-    border-bottom-left-radius: 100px;
-    border-bottom-right-radius: 100px;
     padding: 20px;
 }   
 
@@ -24,4 +22,13 @@ header ul {
 
 .signs a {
     text-decoration: none;
+}
+
+/*
+footer {
+    background-color: rgb(230, 118, 151);
+    position: fixed;
+    padding: 20px;
+    bottom: 0;
+    width: 100%;
 }
