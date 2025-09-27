@@ -1,25 +1,30 @@
-{%extends "base.html" %}
+{% extends "base.html" %}
+{% load static %}
 
-{%block criar%} Criar postagem{%endblock criar%}
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'postagens/css/criarpost.css' %}">
+{% endblock %}
 
-{%block conteudo%}
+{% block criar %} Criar postagem {% endblock %}
 
-    <a href="{%url 'criar_post' %}" > Criar uma postagem</a>
-
-   <form method="POST" enctype="multipart/form-data">
+{% block conteudo %}
+    
+    <form method="POST" enctype="multipart/form-data" class="formulario">
         {% csrf_token %}
-        <label for="titulo">Título da publicação:</label>
-        <input type="text" name="Título da publicação" id="titulo" required>
+        
+        <label for="titulo" class="rotulo">Título:</label>
+        <input type="text" name="titulo" id="titulo" class="entrada" required>
 
-        <label for="descricao">Descrição do post:</label>
-        <textarea name="Descrição do post" id="descricao" required></textarea>
+        <label for="descricao" class="rotulo">Descrição:</label>
+        <textarea name="descricao" id="descricao" class="area descricao" required></textarea>
 
-        <label for="imagem">Imagem do post:</label>
-        <input type="file" name="Imagem do post" id="imagem" required>
+        <label for="imagem" class="rotulo">Imagem:</label>
+        <input type="file" name="imagem" id="imagem" class="entrada" required>
 
-        <button type="submit">Criar Post</button>
+        <button type="submit" class="botao">Criar Postagem</button>
+        
         {% if erro %}
-            <p style="color:red;">{{ erro }}</p>
+            <p class="erro">{{ erro }}</p>
         {% endif %}
     </form>
-{%endblock conteudo%}
+{% endblock %}
