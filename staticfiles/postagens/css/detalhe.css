@@ -1,0 +1,51 @@
+.post {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-size: larger;
+    margin: 20px;
+}
+
+.post p {
+    width: 800px;
+}
+
+.criar_comentario {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 20px;
+}
+
+.coment_form {
+    display: flex;
+    flex-direction: column;
+    width: 800px;
+}
+
+.miscelaneas {
+    display: flex;
+    flex-direction: column;
+}
+
+.coment_form button {
+    width: 200px;
+}
+
+.comentarios {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.comentario {
+    padding: 20px;
+    width: 800px;
+    font-size: large;
+    border: 1px solid #1580aa;
+    box-shadow: 5px 1px 5px grey;
+}
+
+#coment_data {
+    font-size: small;
+}
