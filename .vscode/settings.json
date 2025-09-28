@@ -1,4 +1,0 @@
-{
-    "appService.defaultWebAppToDeploy": "/subscriptions/6d5e20cf-e37d-4f5e-941e-bdd1eb0f6a02/resourceGroups/appsvc_linux_brazilsouth_basic2/providers/Microsoft.Web/sites/Wondercooking",
-    "appService.deploySubpath": "."
-}
