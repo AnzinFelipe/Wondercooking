@@ -30,7 +30,12 @@ SECRET_KEY = 'django-insecure-ue3=68*5wmihv@5_6061m81@iqiyvpxmms64gwthoh1rh$n@wl
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = [
+    'wondercooking.vercel.app',
+    '.vercel.app',
+    'localhost',
+    '127.0.0.1'
+]
 
 
 # Application definition
@@ -134,3 +139,5 @@ LOGIN_REDIRECT_URL = '/'
 LOGOUT_REDIRECT_URL = '/'
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+if not DEBUG:
+    STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
