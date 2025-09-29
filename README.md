@@ -49,7 +49,7 @@ Visualize nosso protótipo Lo-fi pelo Figma clicando aqui:
 <details>
 <summary>Entrega 02:</summary>
   
-## Programação em Par
+## 💻 Programação em Par
 
 Segue abaixo links para acessar a documentação da programação em par:
 
@@ -63,7 +63,7 @@ Dupla 002: [Link de acesso.](https://docs.google.com/document/d/1eHmU18Bjz6BKVYZ
 
 Dupla 003: [Link de acesso.](https://docs.google.com/document/d/1_7FUateEpQVbhTdNlaI2qU6icwHFJ50icyU12_h-VXE/edit?usp=sharing)
 
-## Bug Tracker
+## 🐞 Bug Tracker
 
 Bug tracker dos problemas que ocorreram no prolongar do projeto
 
@@ -84,5 +84,9 @@ Quadro sprint 2:
 Acesse nosso Jira clicando aqui:
 <a href = "https://cesar-team-pz3i66at.atlassian.net/jira/software/projects/WON/boards/34" target = "_blanck"> ir para o Jira</a>
 
+## 📸 Screencast da plataforma em funcionamento
+
+Acesse a gravação clicando aqui:
+<a href = "https://youtu.be/_rKbCtVq0rg"> Ir para o vídeo</a>
 </details>
 ---
