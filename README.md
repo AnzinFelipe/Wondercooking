@@ -97,5 +97,8 @@ Acesse nosso Jira clicando aqui:
 
 Acesse a gravação clicando aqui:
 <a href = "https://youtu.be/_rKbCtVq0rg"> Ir para o vídeo</a>
+
+Acesse o deploy do site clicando aqui:
+<a href = "wondercooking.vercel.app"> Wondercooking</a>
 </details>
 ---
