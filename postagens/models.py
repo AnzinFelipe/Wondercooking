@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
+from cloudinary.models import CloudinaryField
 
 # Create your models here.
 
@@ -13,7 +14,7 @@ class postagem(models.Model):
     titulo = models.CharField(max_length = 100, blank = False)
     descricao = models.TextField(blank = False)
     data = models.DateTimeField("Publicado em: ", auto_now_add = True)
-    imagem = models.ImageField(upload_to='images/')
+    imagem = CloudinaryField('images')
     likes = models.ManyToManyField(User, related_name='postagens_likes', blank=True)
     favoritos = models.ManyToManyField(User, related_name='postagens_favoritos', blank=True)
     def __str__(self):
