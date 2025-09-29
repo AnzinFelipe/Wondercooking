@@ -69,5 +69,20 @@ Bug tracker dos problemas que ocorreram no prolongar do projeto
 
 <img src="Imagens/Print_tela_bug_tracker2025-09-28231049.png" alt = "Quadro sprint" width = "1000">
 
+## 📝 Jira:
+
+Atualizamos o backlog e iniciamos uma segunda sprint com 6 histórias de usuário e passando 3 histórias para a etapa de implementação. 
+
+Backlog da sprint 2:
+\
+<img src="Imagens/Print_tela_Backlog_sprint2_2025-09-28_231530.png" width = "1000">
+
+Quadro sprint 2:
+\
+<img src="Imagens/Print_tela_quadro_sprint2_2025-09-28231943.png" width = "1000">
+
+Acesse nosso Jira clicando aqui:
+<a href = "https://cesar-team-pz3i66at.atlassian.net/jira/software/projects/WON/boards/34" target = "_blanck"> ir para o Jira</a>
+
 </details>
 ---
