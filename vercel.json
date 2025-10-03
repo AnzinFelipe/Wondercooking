@@ -4,8 +4,18 @@
         "use": "@vercel/python",
         "config": { "maxLambdaSize": "15mb", "runtime": "python3.13.7" }
     }],
-    "routes": [{
-        "src": "/(.*)",
-        "dest": "wondercooking/wsgi.py"
-    }]
+    "routes": [
+    {
+      "src": "/static/(.*)",
+      "dest": "staticfiles/$1"
+    },
+    {
+      "src": "/media/(.*)",
+      "dest": "media/$1"
+    },
+    {
+      "src": "/(.*)",
+      "dest": "wondercooking/wsgi.py"
+    }
+  ]
 }
