@@ -14,11 +14,18 @@
                 <a href="/post_detalhe/{{ post.id }}"><h3>{{ post.titulo }}</h3></a>
                 <p><strong>Autor:</strong> {{ post.autor.user.username }}</p>
                 <p><strong>Postado em:</strong> {{ post.data }}</p>
-                <p>{{ post.descricao }}</p>
+                {% load app_extra %}
+                <p>{{ post.descricao|link_hashtags }}</p>
                 {% if post.imagem %}
                     <img src="{{ post.imagem.url }}" alt="{{ post.titulo }}" width="300">
                 {% endif %}
-                
+                {% if post.hashtag_set.all %}
+                    <p class="post-tags">Tags:
+                    {% for ht in post.hashtag_set.all %}
+                        <a href="{% url 'tags' ht.hashtagnome %}">#{{ ht.hashtagnome }}</a>{% if not forloop.last %}, {% endif %}
+                    {% endfor %}
+                    </p>
+                {% endif %}
                 <div>
                     <form method="post" action="{% url 'like_post' post.id %}">
                         {% csrf_token %}

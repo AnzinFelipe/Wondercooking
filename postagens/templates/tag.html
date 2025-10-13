@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{%load app_extra%}
+
+{% block conteudo %}
+    <div class="container">
+        <h2>Posts com a tag: #{{ tag }}</h2>
+        {% if posts %}
+            {% for post in posts %}
+                <div class="post">
+                    <h3>{{ post.titulo }}</h3>
+                    <p>{{ post.descricao|link_hashtags }}</p>
+                    <p><strong>Autor:</strong> {{ post.autor.user.username }}</p>
+                    <p><strong>Data de Criação:</strong> {{ post.data }}</p>
+                    <a href="{% url 'post_detalhe' post.id %}">Ver detalhes</a>
+                </div>
+            {% endfor %}
+        {% else %}
+            <p>Nenhum post encontrado com essa tag.</p>
+        {% endif %}
+    </div>
+{% endblock %}

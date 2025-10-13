@@ -2,6 +2,8 @@ from django.views import View
 from django.http import Http404
 from django.shortcuts import render, redirect, get_object_or_404
 from .models import Comentario, postagem, Perfil
+from .models import Comentario, postagem, Perfil, HashTag
+import re
 from django.contrib.auth import login, authenticate
 from django.urls import reverse
 from django.http import HttpResponseRedirect
@@ -111,6 +113,31 @@ def criar_post(request):
             return render (request, 'criar_post.html', {'erro': 'Escreva alguma coisa'})  
         novo_post = postagem(titulo=Titulo, descricao=Descrição, imagem=imagem, autor=perfil)
         novo_post.save()
+        try:
+            descricao_text = Descrição or ''
+            hashtags_field = request.POST.get('hashtags', '') or ''
+
+
+            found_desc = re.findall(r'#([^\s#.,;:!?)\]\[]+)', descricao_text)
+
+            found_field = re.findall(r'#?([A-Za-z0-9_-]+)', hashtags_field)
+
+            all_tags = set([t.strip().lower() for t in found_desc if t.strip()]) | set([t.strip().lower() for t in found_field if t.strip()])
+
+            for tag in all_tags:
+                if not tag:
+                    continue
+                count_desc = len(re.findall(rf'#({re.escape(tag)})', descricao_text, flags=re.IGNORECASE))
+                total_count = count_desc if count_desc > 0 else 1
+                obj, created = HashTag.objects.get_or_create(hashtagnome=tag, post=novo_post, defaults={
+                    'hashtaquant': total_count,
+                    'user': perfil
+                })
+                if not created:
+                    obj.hashtaquant = max(obj.hashtaquant or 0, total_count)
+                    obj.save()
+        except Exception:
+            pass
         return HttpResponseRedirect(reverse('home'))
     return render(request, 'criar_post.html')
 
@@ -154,3 +181,11 @@ def login_view(request):
                 'errors': ['Nome de usuário ou senha incorretos.']
             })
     return render(request, 'login.html')
+
+def tags(request, tag):
+    posts = postagem.objects.filter(hashtag__hashtagnome__iexact=tag).distinct()
+    contexto = {
+        'posts': posts,
+        'tag': tag
+    }
+    return render(request, 'tag.html', contexto)
