@@ -1,16 +1,24 @@
 {% extends "base.html" %}
 {% load static %}
+{% load app_extra %}
 
 {% block conteudo %}
     <link rel="stylesheet" href = "{% static 'postagens/css/detalhe.css' %}">
     <div class = "post">
         <h3>{{ post.titulo }}</h3>
         <p><strong>Autor:</strong> {{ post.autor.user.username }}</p>
-        <p>{{ post.descricao }}</p>
+    <p>{{ post.descricao|link_hashtags }}</p>
         {% if post.imagem %}
         <img src="{{ post.imagem.url }}" alt="{{ post.titulo }}" width="300">
         {% endif %}
         <p><strong>Postado em:</strong> {{ post.data }}</p>
+        {% if post.hashtag_set.all %}
+            <p class="post-tags">Tags:
+            {% for ht in post.hashtag_set.all %}
+                <a href="{% url 'tags' ht.hashtagnome %}">#{{ ht.hashtagnome }}</a>{% if not forloop.last %}, {% endif %}
+            {% endfor %}
+            </p>
+        {% endif %}
         <div class = "miscelaneas">
             <form method="post" action="{% url 'like_post' post.id %}">
                 {% csrf_token %}

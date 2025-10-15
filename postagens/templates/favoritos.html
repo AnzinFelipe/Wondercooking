@@ -20,6 +20,13 @@
                         <img src="{{ post.imagem.url }}" alt="{{ post.titulo }}" width="300">
                     {% endif %}
                     <p><strong>Likes:</strong> {{ post.likes.count }}</p>
+                    {% if post.hashtag_set.all %}
+                        <p class="post-tags">Tags:
+                        {% for ht in post.hashtag_set.all %}
+                            <a href="{% url 'tags' ht.hashtagnome %}">#{{ ht.hashtagnome }}</a>{% if not forloop.last %}, {% endif %}
+                        {% endfor %}
+                        </p>
+                    {% endif %}
                 </div>
                 <hr>
             {% endif %}
