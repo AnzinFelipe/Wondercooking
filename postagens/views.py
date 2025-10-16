@@ -20,7 +20,7 @@ from datetime import timedelta
 def home(request):
     if not request.user.is_authenticated:
         return redirect('registrar')
-    posts = postagem.objects.all()
+    posts = postagem.objects.all().order_by("-data")
     contexto = {
         'posts': posts
     }
