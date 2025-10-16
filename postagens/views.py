@@ -9,11 +9,13 @@ from django.urls import reverse
 from django.http import HttpResponseRedirect
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
-from django.db import IntegrityError
+from django.db import IntegrityError, models
 from django.contrib.auth.mixins import LoginRequiredMixin
-
+from django.utils import timezone
+from datetime import timedelta
 
 # Create your views here.
+
 
 def home(request):
     if not request.user.is_authenticated:
@@ -189,3 +191,17 @@ def tags(request, tag):
         'tag': tag
     }
     return render(request, 'tag.html', contexto)
+
+
+def destaques(request):
+    if not request.user.is_authenticated:
+        return redirect('registrar')
+
+    ultimasemana = timezone.now() - timedelta(days=7)
+
+    posts = postagem.objects.filter(data__gte=ultimasemana).annotate(likes_count=models.Count('likes')).order_by('-likes_count')
+
+    contexto = {
+        'posts': posts
+    }
+    return render(request, 'destaques.html', contexto)

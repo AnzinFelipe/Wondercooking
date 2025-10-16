@@ -18,6 +18,8 @@
                 <div class="signs">
                     {% if user.is_authenticated %}
                         {{ user.username }}
+                        <a href="{% url 'destaques' %}">Destaques</a>
+                        <a href="{% url 'favoritos' %}">Favoritos</a>
                         <a href="{% url 'login' %}">Log out</a>
                     {% else %}
                         <a href="{% url 'login' %}">Log in</a>
@@ -26,7 +28,7 @@
                 </div>
             </li>
             <li>
-                <h1>Wondercooking</h1>
+                <h1><a href="{% url 'home' %}">Wondercooking</a></h1>
                 {% block criar %}{% endblock criar %}
             </li>
             <li>

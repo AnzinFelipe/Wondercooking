@@ -12,4 +12,5 @@ urlpatterns = [
     path('like/<int:post_id>/', LikePostView.as_view(), name='like_post'),
     path('favorite/<int:post_id>/', FavoritePostView.as_view(), name='favorite_post'),
     path('tags/<str:tag>/', views.tags, name='tags'),
+    path('destaques/', views.destaques, name='destaques'),
 ]
