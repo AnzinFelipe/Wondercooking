@@ -103,6 +103,7 @@ HISTÓRIAS IMPLEMENTADAS:
 HISTÓRIA 3: Como usuário que preza pela qualidade das instruções, gostaria de ver se os outros conseguiram fazer tal receita.
 HISTÓRIA 5: Como usuário, quero poder marcar receitas como favorito para guardá-las.
 HISTÓRIA 8: Como usuário, quero que eu possa ver imagens da receita e do processo na aplicação.
+HISTÓRIA 9: Como usuário, gostaria que cada postagem viesse junto com tags anexadas a elas que facilitassem a pesquisa
 
 Acesse nosso Jira clicando aqui:
 <a href = "https://cesar-team-pz3i66at.atlassian.net/jira/software/projects/WON/boards/34" target = "_blanck"> ir para o Jira</a>
