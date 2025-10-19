@@ -1,0 +1,56 @@
+{% extends "base.html" %}
+
+{% block title %}Todos os posts - Wondercooking{% endblock %}
+
+{% block conteudo %}
+  <h1>Bem vindo ao Wondercooking!</h1>
+  <h2>Todos os posts</h2>
+
+  {% if posts %}
+    <div class="posts-grid">
+      {% for post in posts %}
+        <article class="post">
+          <a href="{% url 'post_detalhe' post.id %}">
+            <h3>{{ post.titulo }}</h3>
+          </a>
+
+          <p><strong>Autor:</strong> {{ post.autor.user.username }}</p>
+          <p><strong>Postado em:</strong> {{ post.data|date:"d/m/Y H:i" }}</p>
+
+          {% if post.imagem %}
+            <img class="post-image" src="{{ post.imagem.url }}" alt="{{ post.titulo }}" loading="lazy">
+          {% else %}
+            <div class="post-image" style="display:flex;align-items:center;justify-content:center;background:#f3f3f7;color:#777;border-radius:10px;">
+              Sem imagem
+            </div>
+          {% endif %}
+
+          <div class="post-footer">
+            {% if user.is_authenticated %}
+              <form method="post" action="{% url 'like_post' post.id %}">
+                {% csrf_token %}
+                <input type="hidden" name="next" value="{{ request.get_full_path }}">
+                <button type="submit">
+                  {% if request.user in post.likes.all %}👍 Curtido{% else %}👍 Curtir{% endif %} ({{ post.likes.count }})
+                </button>
+              </form>
+
+              <form method="post" action="{% url 'favorite_post' post.id %}">
+                {% csrf_token %}
+                <input type="hidden" name="next" value="{{ request.get_full_path }}">
+                <button type="submit">
+                  {% if request.user in post.favoritos.all %}★ Favoritado{% else %}☆ Favoritar{% endif %}
+                </button>
+              </form>
+            {% else %}
+              <a href="{% url 'login' %}" class="btn">👍 Curtir</a>
+              <a href="{% url 'login' %}" class="btn">☆ Favoritar</a>
+            {% endif %}
+          </div>
+        </article>
+      {% endfor %}
+    </div>
+  {% else %}
+    <p>Nenhum post encontrado.</p>
+  {% endif %}
+{% endblock %}

@@ -1,0 +1,95 @@
+{% extends "base.html" %}
+{% load static %}
+
+{# CSS específico desta página — vai para o <head> via block extra_css #}
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'postagens/css/detalhe.css' %}">
+{% endblock %}
+
+{% block conteudo %}
+<div class="container">
+  <div class="post-detalhe-grid">
+    
+    <!-- Coluna Esquerda: Título, Imagem, Autor e Data -->
+    <aside class="pd-left">
+      <h1 class="pd-title">{{ post.titulo }}</h1>
+
+      {% if post.imagem %}
+        <img class="pd-image" src="{{ post.imagem.url }}" alt="{{ post.titulo }}">
+      {% else %}
+        <div class="pd-image placeholder">Sem imagem</div>
+      {% endif %}
+
+      <p class="pd-meta"><strong>Autor:</strong> {{ post.autor.user.username }}</p>
+      <p class="pd-meta"><strong>Postado em:</strong> {{ post.data|date:"d/m/Y H:i" }}</p>
+    </aside>
+
+    <!-- Coluna Direita: Corpo, Comentários e Ações -->
+    <section class="pd-right">
+
+      <!-- Corpo da Postagem -->
+      <div class="pd-body">
+        <div class="richtext">{{ post.descricao|linebreaks }}</div>
+      </div>
+
+      <!-- Comentários -->
+      <div class="pd-comments">
+        <h3>Comentários</h3>
+
+        {% if user.is_authenticated %}
+          <form class="coment-form" method="POST" action="{% url 'post_detalhe' post.id %}">
+            {% csrf_token %}
+            <label for="texto">Deixe um comentário:</label>
+            <textarea name="texto" id="texto" required></textarea>
+            <button type="submit">Publicar</button>
+            {% if erro %}
+              <p style="color:red;">{{ erro }}</p>
+            {% endif %}
+          </form>
+        {% else %}
+          <p>Faça <a href="{% url 'login' %}">login</a> para comentar.</p>
+        {% endif %}
+
+        {% if comentarios %}
+          <div class="comentarios-list">
+            {% for comentario in comentarios %}
+              <div class="comentario">
+                <div class="comentario-cabecalho">
+                  <p><strong>{{ comentario.usuario }}</strong></p>
+                  <p class="comentario-data">{{ comentario.data|date:"d/m/Y H:i" }}</p>
+                </div>
+                <p>{{ comentario.texto|linebreaks }}</p>
+              </div>
+            {% endfor %}
+          </div>
+        {% else %}
+          <p>Seja a primeira pessoa a comentar!</p>
+        {% endif %}
+      </div>
+
+      
+      <div id="post-{{ post.id }}" class="pd-actions">
+        {% if user.is_authenticated %}
+          <form method="post" action="{% url 'like_post' post.id %}">
+            {% csrf_token %}
+            <button type="submit" class="btn-like">
+              {% if request.user in post.likes.all %}👍 Curtido{% else %}👍 Curtir{% endif %}
+              ({{ post.likes.count }})
+            </button>
+          </form>
+
+          <form method="post" action="{% url 'favorite_post' post.id %}">
+            {% csrf_token %}
+            <button type="submit" class="btn-fav">
+              {% if request.user in post.favoritos.all %}★ Favoritado{% else %}☆ Favoritar{% endif %}
+            </button>
+          </form>
+        {% else %}
+          <a class="btn-like" href="{% url 'login' %}">👍 Curtir</a>
+          <a class="btn-fav"  href="{% url 'login' %}">☆ Favoritar</a>
+        {% endif %}
+      </div>
+    </section>
+  </div>
+</div>
+{% endblock %}

@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+{% load static %}
+
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" href="{% static 'postagens/css/login.css' %}">
+</head>
+<body>
+    <div class="formulario-container">
+        <h2>Login</h2>
+        
+        {% if errors %}
+            <div class="mensagem erro">
+                {% for error in errors %}
+                    <div>{{ error }}</div>
+                {% endfor %}
+            </div>
+        {% endif %}
+        
+        {% if form.errors %}
+            <p class="mensagem erro">Sua senha ou usuário estão incorretos</p>
+        {% endif %}
+
+        {% if next %}
+            {% if user.is_authenticated %}
+                <p class="mensagem erro">Sua conta não tem acesso a essa página</p>
+            {% else %}
+                <p class="mensagem">Logue para ter acesso a essa página</p>
+            {% endif %}
+        {% endif %}
+
+        <form method="post" action="{% url 'login' %}">
+            {% csrf_token %}
+            
+            <table class="tabela">
+                <tr class="celula">
+                    <td colspan="2">
+                        <label for="username">Nome de usuário:</label>
+                        <input type="text" id="username" name="username" class="texto" required>
+                    </td>
+                </tr>
+                
+                <tr class="celula">
+                    <td colspan="2">
+                        <label for="password">Senha:</label>
+                        <input type="password" id="password" name="password" class="senha" required>
+                    </td>
+                </tr>
+            </table>
+
+            <input type="hidden" name="next" value="{{ next }}" />
+            
+            <button type="submit" class="botao-login">Login</button>
+        </form>
+
+        <div class="rodape-formulario">
+            <p class="mensagem">
+                <a href="{% url 'password_reset' %}" class="link-senha">Esqueceu sua senha?</a>
+            </p>
+            <p class="mensagem">
+                Não tem uma conta? <a href="{% url 'registrar' %}" class="link-login">Registre-se aqui</a>
+            </p>
+        </div>
+    </div>
+</body>
+</html>

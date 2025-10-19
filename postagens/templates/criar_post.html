@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'postagens/css/criarpost.css' %}">
+{% endblock %}
+
+{% block criar %} Criar postagem {% endblock %}
+
+{% block conteudo %}
+    
+    <form method="POST" enctype="multipart/form-data" class="formulario">
+        {% csrf_token %}
+        
+        <label for="titulo" class="rotulo">Título:</label>
+        <input type="text" name="Título da publicação" id="titulo" class="entrada" required>
+
+        <label for="descricao" class="rotulo">Descrição:</label>
+        <textarea name="Descrição do post" id="descricao" class="area descricao" required></textarea>
+
+        <label for="imagem" class="rotulo">Imagem:</label>
+        <input type="file" name="Imagem do post" id="imagem" class="entrada" required>
+
+        <button type="submit" class="botao">Criar Postagem</button>
+        
+        {% if erro %}
+            <p class="erro">{{ erro }}</p>
+        {% endif %}
+    </form>
+{% endblock %}

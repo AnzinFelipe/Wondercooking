@@ -1,0 +1,71 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>{% block title %}Wondercooking{% endblock %}</title>
+
+  <link rel="icon" type="image/png" href="{% static 'postagens/favicon.png' %}" />
+  <link rel="stylesheet" href="{% static 'postagens/css/style.css' %}" />
+
+  {# CSS específico por página (ex.: detalhe.css) #}
+  {% block extra_css %}{% endblock %}
+</head>
+<body>
+
+  {% block header %}
+  <header>
+    <ul>
+      
+      <li class="signs">
+        {% if user.is_authenticated %}
+          {{ user.username }}
+          <a href="{% url 'criar_post' %}">Criar Postagens</a>
+          <a href="{% url 'favoritos' %}">Favoritos</a>
+          <a href="{% url 'logout' %}?next={% url 'login' %}">Logout</a>
+        {% else %}
+          <a href="{% url 'login' %}">Login</a>
+          <a href="{% url 'registrar' %}">Registrar</a>
+        {% endif %}
+      </li>
+
+      
+      <li>
+        <h1><a href="{% url 'home' %}">Wondercooking</a></h1>
+        {% block criar %}{% endblock criar %}
+      </li>
+
+      
+      <li>
+        <div class="bloco_pesquisa">
+          <input type="text" class="pesquisa" placeholder="Pesquisar..." />
+          <button type="button">Buscar</button>
+        </div>
+      </li>
+    </ul>
+  </header>
+  {% endblock %}
+
+  {# Mensagens do Django (opcional) #}
+  {% if messages %}
+    <div class="messages">
+      {% for message in messages %}
+        <div class="message {{ message.tags }}">{{ message }}</div>
+      {% endfor %}
+    </div>
+  {% endif %}
+
+  <main>
+    {% block conteudo %}{% endblock %}
+  </main>
+
+  {% block footer %}
+  <footer></footer>
+  {% endblock %}
+
+  {# Scripts específicos por página (se precisar) #}
+  {% block extra_js %}{% endblock %}
+</body>
+</html>

@@ -1,0 +1,37 @@
+.formulario {
+    max-width: 600px;
+    margin: 20px auto;
+    padding: 20px;
+}
+
+.rotulo {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+.entrada, .area {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 15px;
+    border: 1px solid #5a1717;
+    border-radius: 4px;
+}
+
+.descricao{
+    height: 100px;
+    resize: vertical;
+}
+
+.botao {
+    width: 200px;
+}
+
+.botao:hover {
+    background: #497eb6;
+}
+
+.erro {
+    color: red;
+    margin-top: 10px;
+}
