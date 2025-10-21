@@ -1,15 +1,16 @@
-const { should } = require("chai");
-
 Cypress.Commands.add('deleteUsers', () => {
-  cy.exec('python delete_users.py', { failOnNonZeroExit: false })
-    .then((result) => {
-      if (result.stdout) {
-        cy.log('Cleanup result:', result.stdout);
-      }
-      if (result.stderr) {
-        cy.log('Cleanup stderr:', result.stderr);
-      }
-    });
+  cy.exec('python delete_users.py', { 
+    failOnNonZeroExit: false,
+    timeout: 15000 
+  }).then((result) => {
+    cy.log('Exit code:', result.code);
+    if (result.stdout) {
+      cy.log('Cleanup result:', result.stdout);
+    }
+    if (result.stderr) {
+      cy.log('Cleanup stderr:', result.stderr);
+    }
+  });
 });
 
 Cypress.Commands.add('criarUser', () => {
@@ -36,33 +37,35 @@ Cypress.Commands.add('logar', () => {
   cy.url().should('not.include', '/login/');
 });
 
-Cypress.commands.add('criarPostagem', () => {
-    cy.visit('http://127.0.0.1:8000/criar_post/');
+Cypress.Commands.add('criarPostagem', () => {
+  cy.visit('http://127.0.0.1:8000/criar_post/');
 
-    cy.get('#titulo').should('be.visible');
+  cy.get('#titulo').should('be.visible');
 
-    cy.get('#titulo').type('Testando titulo');
-    cy.get('#descricao').type('Testando descrição');
-    cy.get('#hashtags').type('#testando');
-    cy.get('#imagem').selectFile('cypress/fixtures/imagem_teste.jpg', { force: true });
+  cy.get('#titulo').type('Testando titulo');
+  cy.get('#descricao').type('Testando descrição');
+  cy.get('#hashtags').type('#testando');
+  cy.get('#imagem').selectFile('cypress/fixtures/imagem_teste.jpg', { force: true });
 
-    cy.get('button[type="submit"]').click();
+  cy.get('button[type="submit"]').click();
 
-    cy.url().should('not.include', '/criar_post/');
+  cy.url().should('not.include', '/criar_post/');
 });
 
-Cypress.Commands.add('fazendoComentarioeVisualizando', ()=> {
-    cy.visit('https://127.0.0.1:8000/post_detalhe/1/');
+Cypress.Commands.add('fazendoComentarioeVisualizando', () => {
+  cy.visit('http://127.0.0.1:8000/');
 
-    cy.get('#texto').should('be.visible');
+  cy.contains('Testando titulo').click({ multiple: true });
 
-    cy.get('#texto').type('Testando comentário');
+  cy.get('#texto').should('be.visible');
 
-    cy.get('button[type="submit"]').click();
+  cy.get('#texto').type('Testando comentário');
 
-    cy.url().should('not.include', '/post_detalhe/1/');
+  cy.get('button').contains('Publicar').click();
+  
+  cy.contains('Testando titulo').click({ multiple: true });
 
-    cy.visit('https://127.0.0.1:8000/post_detalhe/1/');
+  cy.contains('Testando comentário').should('be.visible');
 });
 
 describe('User flow', () => {

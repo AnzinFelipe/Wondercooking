@@ -1,13 +1,16 @@
 Cypress.Commands.add('deleteUsers', () => {
-  cy.exec('python delete_users.py', { failOnNonZeroExit: false })
-    .then((result) => {
-      if (result.stdout) {
-        cy.log('Cleanup result:', result.stdout);
-      }
-      if (result.stderr) {
-        cy.log('Cleanup stderr:', result.stderr);
-      }
-    });
+  cy.exec('python delete_users.py', { 
+    failOnNonZeroExit: false,
+    timeout: 15000 
+  }).then((result) => {
+    cy.log('Exit code:', result.code);
+    if (result.stdout) {
+      cy.log('Cleanup result:', result.stdout);
+    }
+    if (result.stderr) {
+      cy.log('Cleanup stderr:', result.stderr);
+    }
+  });
 });
 
 Cypress.Commands.add('criarUser', () => {

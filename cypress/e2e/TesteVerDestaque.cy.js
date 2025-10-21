@@ -1,13 +1,16 @@
 Cypress.Commands.add('deleteUsers', () => {
-  cy.exec('python delete_users.py', { failOnNonZeroExit: false })
-    .then((result) => {
-      if (result.stdout) {
-        cy.log('Cleanup result:', result.stdout);
-      }
-      if (result.stderr) {
-        cy.log('Cleanup stderr:', result.stderr);
-      }
-    });
+  cy.exec('python delete_users.py', { 
+    failOnNonZeroExit: false,
+    timeout: 15000 
+  }).then((result) => {
+    cy.log('Exit code:', result.code);
+    if (result.stdout) {
+      cy.log('Cleanup result:', result.stdout);
+    }
+    if (result.stderr) {
+      cy.log('Cleanup stderr:', result.stderr);
+    }
+  });
 });
 
 Cypress.Commands.add('criarUser', () => {
@@ -34,7 +37,7 @@ Cypress.Commands.add('logar', () => {
     cy.url().should('not.include', '/login/');
 });
 
-Cypress.commands.add('criarPostagem', () => {
+Cypress.Commands.add('criarPostagem', () => {
     cy.visit('http://127.0.0.1:8000/criar_post/');
 
     cy.get('#titulo').should('be.visible');
@@ -49,8 +52,8 @@ Cypress.commands.add('criarPostagem', () => {
     cy.url().should('not.include', '/criar_post/');
 });
 
-Cypress.commands.add('acessarDestaque', () => {
-    cy.visit('https://127.0.0.1:8000/destaques/');
+Cypress.Commands.add('acessarDestaque', () => {
+    cy.get('a').contains('Destaques').click();
 });
 
 describe('User flow', () => {

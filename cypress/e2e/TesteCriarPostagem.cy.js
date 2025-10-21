@@ -1,13 +1,16 @@
 Cypress.Commands.add('deleteUsers', () => {
-  cy.exec('python delete_users.py', { failOnNonZeroExit: false })
-    .then((result) => {
-      if (result.stdout) {
-        cy.log('Cleanup result:', result.stdout);
-      }
-      if (result.stderr) {
-        cy.log('Cleanup stderr:', result.stderr);
-      }
-    });
+  cy.exec('python delete_users.py', { 
+    failOnNonZeroExit: false,
+    timeout: 15000 
+  }).then((result) => {
+    cy.log('Exit code:', result.code);
+    if (result.stdout) {
+      cy.log('Cleanup result:', result.stdout);
+    }
+    if (result.stderr) {
+      cy.log('Cleanup stderr:', result.stderr);
+    }
+  });
 });
 
 Cypress.Commands.add('criarUser', () => {
@@ -26,27 +29,27 @@ Cypress.Commands.add('criarUser', () => {
 });
 
 Cypress.Commands.add('logar', () => {
-    cy.visit('http://127.0.0.1:8000/accounts/login/');  
-    cy.get('#username').type('TestandoCypress4'); 
-    cy.get('#password').type('12345678');  
-    cy.get('button[type="submit"]').click();  
+  cy.visit('http://127.0.0.1:8000/accounts/login/');  
+  cy.get('#username').type('TestandoCypress4'); 
+  cy.get('#password').type('12345678');  
+  cy.get('button[type="submit"]').click();  
     
-    cy.url().should('not.include', '/login/');
+  cy.url().should('not.include', '/login/');
 });
 
-Cypress.commands.add('criarPostagem', () => {
-    cy.visit('http://127.0.0.1:8000/criar_post/');
+Cypress.Commands.add('criarPostagem', () => {
+  cy.visit('http://127.0.0.1:8000/criar_post/');
 
-    cy.get('#titulo').should('be.visible');
+  cy.get('#titulo').should('be.visible');
 
-    cy.get('#titulo').type('Testando titulo');
-    cy.get('#descricao').type('Testando descrição');
-    cy.get('#hashtags').type('#testando');
-    cy.get('#imagem').selectFile('cypress/fixtures/imagem_teste.jpg', { force: true });
+  cy.get('#titulo').type('Testando titulo');
+  cy.get('#descricao').type('Testando descrição');
+  cy.get('#hashtags').type('#testando');
+  cy.get('#imagem').selectFile('cypress/fixtures/imagem_teste.jpg', { force: true });
 
-    cy.get('button[type="submit"]').click();
+  cy.get('button[type="submit"]').click();
 
-    cy.url().should('not.include', '/criar_post/');
+  cy.url().should('not.include', '/criar_post/');
 });
 
 describe('User flow', () => {
