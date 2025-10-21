@@ -49,8 +49,12 @@ Cypress.commands.add('criarPostagem', () => {
     cy.url().should('not.include', '/criar_post/');
 });
 
-Cypress.commands.add('acessarDestaque', () => {
-    cy.visit('https://127.0.0.1:8000/destaques/');
+Cypress.commands.add('verTag', () => {
+    cy.visit('http://127.0.0.1:8000/');
+
+    cy.contains('#testando').should('be.visible');
+
+    cy.visit('http://127.0.0.1:8000/tags/testando/');
 });
 
 describe('User flow', () => {
@@ -61,8 +65,8 @@ describe('User flow', () => {
     cy.criarPostagem();
   });
 
-  it('deve acessar destaques semanais', () => {
-    cy.acessarDestaque();
+  it('deve acessar url das tags e ver se aparece o post', () => {
+    cy.verTag();
 
     cy.contains('Testando titulo').should('be.visible');
   });

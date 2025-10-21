@@ -41,7 +41,7 @@ Cypress.commands.add('criarPostagem', () => {
 
     cy.get('#titulo').type('Testando titulo');
     cy.get('#descricao').type('Testando descrição');
-    cy.get('#hashtags').type('#Testando');
+    cy.get('#hashtags').type('#testando');
     cy.get('#imagem').selectFile('cypress/fixtures/imagem_teste.jpg', { force: true });
 
     cy.get('button[type="submit"]').click();
