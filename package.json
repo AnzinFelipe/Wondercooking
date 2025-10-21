@@ -1,0 +1,24 @@
+{
+  "name": "wondercooking",
+  "version": "1.0.0",
+  "description": "Você, meu caro leitor, ainda sofre por não conseguir achar receitas do seu gosto o(´^｀)o? Ou ainda sofre para encontrar tutoriais de técnicas específicas do universo culinário ಥ_ಥ?",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AnzinFelipe/Wondercooking.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/AnzinFelipe/Wondercooking/issues"
+  },
+  "homepage": "https://github.com/AnzinFelipe/Wondercooking#readme",
+  "dependencies": {
+    "cypress": "^15.5.0"
+  }
+}
