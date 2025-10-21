@@ -34,15 +34,31 @@ Cypress.Commands.add('logar', () => {
     cy.url().should('not.include', '/login/');
 });
 
+Cypress.commands.add('criarPostagem', () => {
+    cy.visit('http://127.0.0.1:8000/criar_post/');
+
+    cy.get('#titulo').should('be.visible');
+
+    cy.get('#titulo').type('Testando titulo');
+    cy.get('#descricao').type('Testando descrição');
+    cy.get('#hashtags').type('#Testando');
+    cy.get('#imagem').selectFile('cypress/fixtures/imagem_teste.jpg', { force: true });
+
+    cy.get('button[type="submit"]').click();
+
+    cy.url().should('not.include', '/criar_post/');
+});
+
 describe('User flow', () => {
   before(() => {
     cy.deleteUsers(); 
-  });
-
-  it('deve criar um usuario e fazer login no site', () => {
     cy.criarUser(); 
     cy.logar();
+  });
+
+  it('deve criar uma postagem', () => {
+    cy.criarPostagem();
     
-    cy.contains('TestandoCypress4').should('be.visible');
+    cy.contains('Testando titulo').should('be.visible');
   });
 });
