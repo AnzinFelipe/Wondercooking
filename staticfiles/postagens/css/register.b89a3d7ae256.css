@@ -1,0 +1,67 @@
+.formulario-login {
+    max-width: 400px;
+    margin: 80px auto;
+    padding: 40px;
+    text-align: center;
+    background-color: #ecb8e1;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.tabela {
+    width: 100%;
+    margin: 30px 0;
+}
+
+.celula {
+    padding: 10px;
+    font-size: 16px;
+}
+
+.texto,
+.senha,
+.email,
+.confirma-senha {
+    width: 100%;
+    padding: 12px;
+    margin: 8px 0;
+    font-size: 16px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+.botao-login,
+.botao-registro {
+    padding: 15px 30px;
+    margin: 20px 0;
+    font-size: 18px;
+    background-color: #502A50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.botao-login:hover,
+.botao-registro:hover {
+    background-color: #94177f;
+}
+
+.mensagem {
+    margin: 15px 0;
+    font-size: 16px;
+}
+
+.link-senha,
+.link-login {
+    color: #502A50;
+    text-decoration: none;
+    font-size: 16px;
+}
+
+.link-senha:hover,
+.link-login:hover {
+    text-decoration: underline;
+}
+
+

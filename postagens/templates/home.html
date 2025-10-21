@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+{% load static %}
 
 {% block title %}Todos os posts - Wondercooking{% endblock %}
 
@@ -14,11 +15,25 @@
             <h3>{{ post.titulo }}</h3>
           </a>
 
-          <p><strong>Autor:</strong> {{ post.autor.user.username }}</p>
+          <p>
+            <strong>Autor:</strong>
+            {% if post.autor and post.autor.user %}
+              {{ post.autor.user.username }}
+            {% else %}
+              Anônimo
+            {% endif %}
+          </p>
+
           <p><strong>Postado em:</strong> {{ post.data|date:"d/m/Y H:i" }}</p>
 
           {% if post.imagem %}
-            <img class="post-image" src="{{ post.imagem.url }}" alt="{{ post.titulo }}" loading="lazy">
+            {% if post.imagem.url %}
+              <img class="post-image" src="{{ post.imagem.url }}" alt="{{ post.titulo }}" loading="lazy">
+            {% else %}
+              <div class="post-image" style="display:flex;align-items:center;justify-content:center;background:#f3f3f7;color:#777;border-radius:10px;">
+                Sem imagem
+              </div>
+            {% endif %}
           {% else %}
             <div class="post-image" style="display:flex;align-items:center;justify-content:center;background:#f3f3f7;color:#777;border-radius:10px;">
               Sem imagem
@@ -31,7 +46,8 @@
                 {% csrf_token %}
                 <input type="hidden" name="next" value="{{ request.get_full_path }}">
                 <button type="submit">
-                  {% if request.user in post.likes.all %}👍 Curtido{% else %}👍 Curtir{% endif %} ({{ post.likes.count }})
+                  {% if request.user in post.likes.all %}👍 Curtido{% else %}👍 Curtir{% endif %}
+                  ({{ post.likes.count }})
                 </button>
               </form>
 

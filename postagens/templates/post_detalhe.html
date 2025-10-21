@@ -1,7 +1,6 @@
 {% extends "base.html" %}
 {% load static %}
 
-{# CSS específico desta página — vai para o <head> via block extra_css #}
 {% block extra_css %}
 <link rel="stylesheet" href="{% static 'postagens/css/detalhe.css' %}">
 {% endblock %}
@@ -10,29 +9,37 @@
 <div class="container">
   <div class="post-detalhe-grid">
     
-    <!-- Coluna Esquerda: Título, Imagem, Autor e Data -->
     <aside class="pd-left">
       <h1 class="pd-title">{{ post.titulo }}</h1>
 
       {% if post.imagem %}
-        <img class="pd-image" src="{{ post.imagem.url }}" alt="{{ post.titulo }}">
+        {% if post.imagem.url %}
+          <img class="pd-image" src="{{ post.imagem.url }}" alt="{{ post.titulo }}">
+        {% else %}
+          <div class="pd-image placeholder">Sem imagem</div>
+        {% endif %}
       {% else %}
         <div class="pd-image placeholder">Sem imagem</div>
       {% endif %}
 
-      <p class="pd-meta"><strong>Autor:</strong> {{ post.autor.user.username }}</p>
+      <p class="pd-meta">
+        <strong>Autor:</strong>
+        {% if post.autor and post.autor.user %}
+          {{ post.autor.user.username }}
+        {% else %}
+          Anônimo
+        {% endif %}
+      </p>
+
       <p class="pd-meta"><strong>Postado em:</strong> {{ post.data|date:"d/m/Y H:i" }}</p>
     </aside>
 
-    <!-- Coluna Direita: Corpo, Comentários e Ações -->
     <section class="pd-right">
 
-      <!-- Corpo da Postagem -->
       <div class="pd-body">
         <div class="richtext">{{ post.descricao|linebreaks }}</div>
       </div>
 
-      <!-- Comentários -->
       <div class="pd-comments">
         <h3>Comentários</h3>
 
@@ -55,7 +62,13 @@
             {% for comentario in comentarios %}
               <div class="comentario">
                 <div class="comentario-cabecalho">
-                  <p><strong>{{ comentario.usuario }}</strong></p>
+                  <p><strong>
+                    {% if comentario.usuario and comentario.usuario.user %}
+                      {{ comentario.usuario.user.username }}
+                    {% else %}
+                      Usuário desconhecido
+                    {% endif %}
+                  </strong></p>
                   <p class="comentario-data">{{ comentario.data|date:"d/m/Y H:i" }}</p>
                 </div>
                 <p>{{ comentario.texto|linebreaks }}</p>
@@ -67,7 +80,6 @@
         {% endif %}
       </div>
 
-      
       <div id="post-{{ post.id }}" class="pd-actions">
         {% if user.is_authenticated %}
           <form method="post" action="{% url 'like_post' post.id %}">
@@ -88,6 +100,10 @@
           <a class="btn-like" href="{% url 'login' %}">👍 Curtir</a>
           <a class="btn-fav"  href="{% url 'login' %}">☆ Favoritar</a>
         {% endif %}
+
+        <div class="voltar-container">
+          <a href="{% url 'home' %}" class="btn-voltar">Voltar</a>
+        </div>
       </div>
     </section>
   </div>

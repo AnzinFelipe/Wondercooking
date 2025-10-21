@@ -10,66 +10,28 @@
     padding: 0 16px;
     font-size: 0.93rem;
   }
-
-  .fav-wrap h1 {
-    margin-bottom: 6px;
-  }
-
-  .fav-wrap h2 {
-    font-size: 1.2rem;
-    margin: 6px 0 16px;
-  }
-
-  .fav-list {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-  }
-
+  .fav-wrap h1 { margin-bottom: 6px; }
+  .fav-wrap h2 { font-size: 1.2rem; margin: 6px 0 16px; }
+  .fav-list { display: flex; flex-direction: column; gap: 20px; }
   .fav-card {
-    background: #fff;
-    border: 1px solid #e9e9ef;
-    border-radius: 12px;
-    padding: 16px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+    background: #fff; border: 1px solid #e9e9ef; border-radius: 12px; padding: 16px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
   }
-
-  .fav-card h3 {
-    margin: 0 0 8px;
-    font-size: 1.05rem;
-  }
-
-  .fav-card h3 a {
-    color: #3a1f3a;
-    text-decoration: underline;
-  }
-
-  .fav-meta {
-    color: #555;
-    margin: 2px 0 8px;
-  }
-
+  .fav-card h3 { margin: 0 0 8px; font-size: 1.05rem; }
+  .fav-card h3 a { color: #3a1f3a; text-decoration: underline; }
+  .fav-meta { color: #555; margin: 2px 0 8px; }
   .fav-thumb {
-    width: 100%;
-    max-width: 350px;
-    height: auto;
-    border-radius: 10px;
-    object-fit: cover;
-    object-position: center;
-    display: block;
+    width: 100%; max-width: 350px; height: auto; border-radius: 10px; object-fit: cover;
+    object-position: center; display: block; margin: 10px 0 10px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+  }
+  .fav-placeholder {
+    width: 100%; max-width: 350px; height: 200px; border-radius: 10px;
+    background:#f3f3f7; color:#777; display:flex; align-items:center; justify-content:center;
     margin: 10px 0 10px;
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
   }
-
-  .descricao-formatada {
-    margin: 10px 0 12px;
-    line-height: 1.6;
-    color: #333;
-  }
-
-  .descricao-formatada p {
-    margin-bottom: 8px;
-  }
+  .descricao-formatada { margin: 10px 0 12px; line-height: 1.6; color: #333; }
+  .descricao-formatada p { margin-bottom: 8px; }
 </style>
 {% endblock %}
 
@@ -84,16 +46,27 @@
         {% if request.user in post.favoritos.all %}
           <article class="fav-card" id="post-{{ post.id }}">
             <h3><a href="{% url 'post_detalhe' post.id %}">{{ post.titulo }}</a></h3>
-            <p class="fav-meta"><strong>Autor:</strong> {{ post.autor.user.username }}</p>
+
+            <p class="fav-meta"><strong>Autor:</strong>
+              {% if post.autor and post.autor.user %}
+                {{ post.autor.user.username }}
+              {% else %}
+                Anônimo
+              {% endif %}
+            </p>
+
             <p class="fav-meta"><strong>Data:</strong> {{ post.data|date:"d/m/Y H:i" }}</p>
 
             {% if post.imagem %}
-              <img class="fav-thumb" src="{{ post.imagem.url }}" alt="{{ post.titulo }}">
+              {% if post.imagem.url %}
+                <img class="fav-thumb" src="{{ post.imagem.url }}" alt="{{ post.titulo }}">
+              {% else %}
+                <div class="fav-placeholder">Sem imagem</div>
+              {% endif %}
+            {% else %}
+              <div class="fav-placeholder">Sem imagem</div>
             {% endif %}
 
-            {% if post.descricao %}
-              <div class="descricao-formatada" data-text="{{ post.descricao|escapejs }}"></div>
-            {% endif %}
 
             <p class="fav-meta"><strong>Likes:</strong> {{ post.likes.count }}</p>
           </article>
@@ -115,8 +88,8 @@
 document.addEventListener('DOMContentLoaded', function () {
   document.querySelectorAll('.descricao-formatada').forEach(function(el){
     const raw = (el.dataset.text || '')
-      .replace(/(?i)ingredientes?:?/g, '')   // remove palavra “ingredientes”
-      .replace(/(?i)modo de preparo:?/g, '') // remove palavra “modo de preparo”
+      .replace(/ingredientes?:?/gi, '')
+      .replace(/modo de preparo:?/gi, '')
       .split(/\r?\n/)
       .map(s => s.trim())
       .filter(Boolean);

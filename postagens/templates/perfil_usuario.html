@@ -1,7 +1,76 @@
 {% extends "base.html" %}
+{% load static %}
+
+{% block title %}Seu Perfil - Wondercooking{% endblock %}
 
 {% block conteudo %}
+  <section class="perfil-wrap" style="max-width: 900px; margin: 0 auto; padding: 0 16px;">
     <h1>Seu Perfil</h1>
-    <h2>{{user.username}}</h2>
-    <p>Postagens Favoritas</p>
+
+    <div class="perfil-head" style="margin-bottom: 12px;">
+      <h2 style="margin: 4px 0;">{{ user.username }}</h2>
+      {% if user.email %}
+        <p style="color:#555; margin: 0;">{{ user.email }}</p>
+      {% endif %}
+    </div>
+
+    <hr style="margin: 16px 0;">
+
+    <h3>Postagens Favoritas</h3>
+
+    {% comment %}
+      Exibe apenas posts que o usuário atual favoritou.
+      Se você já prepara 'posts' na view, pode trocar por esse contexto.
+    {% endcomment %}
+
+    {% if user.is_authenticated %}
+      {% with favs=user.postagem_set.all %}
+        {% if favs %}
+          <ul style="list-style: none; padding-left: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 16px;">
+            {% for post in favs %}
+              {% if user in post.favoritos.all %}
+                <li style="border:1px solid #e9e9ef; border-radius:12px; padding:12px; background:#fff;">
+                  <a href="{% url 'post_detalhe' post.id %}" style="text-decoration: none; color: #3a1f3a;">
+                    <h4 style="margin:0 0 6px;">{{ post.titulo }}</h4>
+                  </a>
+
+                  <p style="margin:0 0 6px; color:#666;">
+                    <strong>Autor:</strong>
+                    {% if post.autor and post.autor.user %}
+                      {{ post.autor.user.username }}
+                    {% else %}
+                      Anônimo
+                    {% endif %}
+                  </p>
+
+                  {% if post.imagem %}
+                    {% if post.imagem.url %}
+                      <img src="{{ post.imagem.url }}" alt="{{ post.titulo }}" style="width:100%; height:auto; max-height:180px; object-fit:cover; border-radius:8px;">
+                    {% else %}
+                      <div style="width:100%; height:180px; background:#f3f3f7; color:#777; display:flex; align-items:center; justify-content:center; border-radius:8px;">
+                        Sem imagem
+                      </div>
+                    {% endif %}
+                  {% else %}
+                    <div style="width:100%; height:180px; background:#f3f3f7; color:#777; display:flex; align-items:center; justify-content:center; border-radius:8px;">
+                      Sem imagem
+                    </div>
+                  {% endif %}
+
+                  <p style="margin:8px 0 0; color:#666;">
+                    <strong>Likes:</strong> {{ post.likes.count }}
+                  </p>
+                </li>
+              {% endif %}
+            {% endfor %}
+          </ul>
+        {% else %}
+          <p>Você ainda não favoritou nenhum post.</p>
+        {% endif %}
+      {% endwith %}
+    {% else %}
+      <p>Faça <a href="{% url 'login' %}">login</a> para ver seu perfil.</p>
+    {% endif %}
+
+  </section>
 {% endblock %}
