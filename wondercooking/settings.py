@@ -16,6 +16,8 @@ from pathlib import Path
 from dotenv import load_dotenv
 load_dotenv()
 
+print("CLOUDINARY_URL:", os.getenv("CLOUDINARY_URL"))
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 TEMPLATE_DIR = os.path.join(BASE_DIR, 'templates')
