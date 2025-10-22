@@ -103,7 +103,7 @@ HISTÓRIAS IMPLEMENTADAS:
 HISTÓRIA 3: Como usuário que preza pela qualidade das instruções, gostaria de ver se os outros conseguiram fazer tal receita.
 HISTÓRIA 5: Como usuário, quero poder marcar receitas como favorito para guardá-las.
 HISTÓRIA 8: Como usuário, quero que eu possa ver imagens da receita e do processo na aplicação.
-HISTÓRIA 9: Como usuário, gostaria que cada postagem viesse junto com tags anexadas a elas que facilitassem a pesquisa
+
 
 Acesse nosso Jira clicando aqui:
 <a href = "https://cesar-team-pz3i66at.atlassian.net/jira/software/projects/WON/boards/34" target = "_blanck"> ir para o Jira</a>
@@ -131,4 +131,41 @@ Dupla 002: [Link de acesso.](https://docs.google.com/document/d/1eHmU18Bjz6BKVYZ
 
 
 Dupla 003: [Link de acesso.](https://docs.google.com/document/d/1_7FUateEpQVbhTdNlaI2qU6icwHFJ50icyU12_h-VXE/edit?usp=sharing)
+
+
+## 🐞 Bug Tracker
+
+Bug tracker dos problemas que ocorreram no prolongar do projeto
+
+<img src="Substituir por imagem" alt = "Quadro sprint" width = "1000">
+
+## 📝 Jira:
+
+Atualizamos o backlog e iniciamos uma segunda sprint com 6 histórias de usuário e passando 3 histórias para a etapa de implementação. 
+
+Backlog da sprint 3:
+\
+<img src="Substituir por imagem" width = "1000">
+
+Quadro sprint 3:
+\
+<img src="Substituir por imagem" width = "1000">
+
+
+HISTÓRIAS IMPLEMENTADAS:
+
+HISTÓRIA 9: Como usuário, gostaria que cada postagem viesse junto com tags anexadas a elas que facilitassem a pesquisa
+HISTÓRIA 13: Como usuário, gostaria de poder ver os destaques semanais ou mensais das receitas
+
+Acesse nosso Jira clicando aqui:
+<a href = "https://cesar-team-pz3i66at.atlassian.net/jira/software/projects/WON/boards/34" target = "_blanck"> ir para o Jira</a>
+
+## 📸 Screencasts do site
+
+Acesse as gravações clicando aqui:
+<a href = "link"> Cypress</a>
+<a href = "link"> CD/CI</a>
+<a href = "link"> Deploy do site</a>
+
+
 </details>
