@@ -163,8 +163,8 @@ Acesse nosso Jira clicando aqui:
 ## 📸 Screencasts do site
 
 Acesse as gravações clicando aqui:
-<a href = "link"> Cypress</a>
-<a href = "link"> CD/CI</a>
+<a href = "link"> Cypress</a><br>
+<a href = "link"> CD/CI</a><br>
 <a href = "link"> Deploy do site</a>
 
 
