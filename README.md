@@ -100,9 +100,9 @@ Quadro sprint 2:
 
 HISTÓRIAS IMPLEMENTADAS:
 
-HISTÓRIA 3: Como usuário que preza pela qualidade das instruções, gostaria de ver se os outros conseguiram fazer tal receita.
-HISTÓRIA 5: Como usuário, quero poder marcar receitas como favorito para guardá-las.
-HISTÓRIA 8: Como usuário, quero que eu possa ver imagens da receita e do processo na aplicação.
+HISTÓRIA 3: Como usuário que preza pela qualidade das instruções, gostaria de ver se os outros conseguiram fazer tal receita.<br>
+HISTÓRIA 5: Como usuário, quero poder marcar receitas como favorito para guardá-las.<br>
+HISTÓRIA 8: Como usuário, quero que eu possa ver imagens da receita e do processo na aplicação.<br>
 
 
 Acesse nosso Jira clicando aqui:
@@ -160,7 +160,7 @@ Acesse nosso Jira clicando aqui:
 ## 📸 Screencasts do site
 
 Acesse as gravações clicando aqui:<br>
-<a href = "https://youtu.be/Qjeoq8JZPMM"> Cypress</a><br>
+<a href = "https://youtu.be/Qjeoq8JZPMM"> Cypress</a>
 <a href = "https://youtu.be/AlMmL2M8T5w"> CD/CI // Processo do Deploy</a><br>
 <a href = "https://youtu.be/iu6VzqGaWm0"> Deploy do site</a>
 
