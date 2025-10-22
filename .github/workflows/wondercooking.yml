@@ -82,6 +82,5 @@ jobs:
           working-directory: .
           prod: true
 
-
       - name: Exibir URL do site
         run: echo "Site: https://wondercooking.app"
