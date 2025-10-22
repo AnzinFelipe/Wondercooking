@@ -151,7 +151,7 @@ Quadro sprint 3:
 
 HISTÓRIAS IMPLEMENTADAS:
 
-HISTÓRIA 9: Como usuário, gostaria que cada postagem viesse junto com tags anexadas a elas que facilitassem a pesquisa
+HISTÓRIA 9: Como usuário, gostaria que cada postagem viesse junto com tags anexadas a elas que facilitassem a pesquisa<br>
 HISTÓRIA 13: Como usuário, gostaria de poder ver os destaques semanais ou mensais das receitas
 
 Acesse nosso Jira clicando aqui:
