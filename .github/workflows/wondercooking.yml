@@ -52,7 +52,7 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     needs: run-tests
-    
+
     steps:
       - name: Checkout do código
         uses: actions/checkout@v3
@@ -82,6 +82,3 @@ jobs:
           vercel-token: ${{ secrets.VERCEL_TOKEN }}
           working-directory: .
           prod: true
-
-      - name: Exibir URL do site
-        run: echo "Site: https://wondercooking.app"
