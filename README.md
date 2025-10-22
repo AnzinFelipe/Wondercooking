@@ -118,4 +118,17 @@ Acesse a gravação clicando aqui:
 <details>
 <summary>Entrega 03:</summary>
 
+## 💻 Programação em Par atualizada
+
+Segue abaixo links para acessar a versão atualizada da documentação da programação em par:
+
+Dupla 001: [Link de acesso.](https://docs.google.com/document/d/1VMShdnzmD7LD9jPJXrcCvs5p0LIE16-E2SSJfQTupZ0/edit?usp=sharing)
+
+
+
+Dupla 002: [Link de acesso.](https://docs.google.com/document/d/1eHmU18Bjz6BKVYZzzzeMdUzSkjeLxBpYUKqnVwqAahE/edit?usp=sharing)
+
+
+
+Dupla 003: [Link de acesso.](https://docs.google.com/document/d/1_7FUateEpQVbhTdNlaI2qU6icwHFJ50icyU12_h-VXE/edit?usp=sharing)
 </details>
