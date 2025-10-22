@@ -114,5 +114,8 @@ Acesse a gravação clicando aqui:
 <a href = "https://youtu.be/_rKbCtVq0rg"> Ir para o vídeo</a>
 </details>
 
+
+<details>
 <summary>Entrega 03:</summary>
----
+
+</details>
