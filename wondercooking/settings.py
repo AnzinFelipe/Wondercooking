@@ -11,12 +11,9 @@ https://docs.djangoproject.com/en/5.2/ref/settings/
 """
 import os
 import dj_database_url
-import cloudinary
 from pathlib import Path
 from dotenv import load_dotenv
 load_dotenv()
-
-print("CLOUDINARY_URL:", os.getenv("CLOUDINARY_URL"))
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -39,7 +36,6 @@ ALLOWED_HOSTS = [
     '127.0.0.1'
 ]
 
-
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
@@ -50,13 +46,8 @@ INSTALLED_APPS = [
     'postagens',
 ]
 
-cloudinary.config(secure=True)
-
-if os.getenv('CLOUDINARY_URL'):
-    INSTALLED_APPS += [
-        'cloudinary',
-        'cloudinary_storage',
-    ]
+if not DEBUG:
+    INSTALLED_APPS += ['cloudinary', 'cloudinary_storage']
     DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
 else:
     DEFAULT_FILE_STORAGE = 'django.core.files.storage.FileSystemStorage'
