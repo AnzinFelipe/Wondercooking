@@ -11,9 +11,12 @@ https://docs.djangoproject.com/en/5.2/ref/settings/
 """
 import os
 import dj_database_url
+import cloudinary
 from pathlib import Path
 from dotenv import load_dotenv
 load_dotenv()
+
+print("CLOUDINARY_URL:", os.getenv("CLOUDINARY_URL"))
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -37,8 +40,6 @@ ALLOWED_HOSTS = [
 ]
 
 
-
-
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
@@ -49,30 +50,18 @@ INSTALLED_APPS = [
     'postagens',
 ]
 
+cloudinary.config(secure=True)
 
-CLOUDINARY_CLOUD_NAME = os.getenv('CLOUDINARY_CLOUD_NAME')
-CLOUDINARY_API_KEY = os.getenv('CLOUDINARY_API_KEY')
-CLOUDINARY_API_SECRET = os.getenv('CLOUDINARY_API_SECRET')
-
-CLOUDINARY_STORAGE = {
-    'CLOUD_NAME': CLOUDINARY_CLOUD_NAME,
-    'API_KEY': CLOUDINARY_API_KEY,
-    'API_SECRET': CLOUDINARY_API_SECRET,
-}
-
-
-if CLOUDINARY_API_KEY:
+if os.getenv('CLOUDINARY_URL'):
     INSTALLED_APPS += [
         'cloudinary',
         'cloudinary_storage',
     ]
     DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
 else:
-    # Local development fallback
     DEFAULT_FILE_STORAGE = 'django.core.files.storage.FileSystemStorage'
     MEDIA_URL = '/media/'
     MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
-
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -107,19 +96,21 @@ WSGI_APPLICATION = 'wondercooking.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.2/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
-}
-
 if not DEBUG and os.environ.get('DATABASE_URL'):
-    DATABASES['default'] = dj_database_url.config(
-        default=os.environ.get('DATABASE_URL'),
-        conn_max_age=600,
-        conn_health_checks=True,
-    )
+    DATABASES = {
+        'default': dj_database_url.config(
+            default=os.environ.get('DATABASE_URL'),
+            conn_max_age=600,
+            conn_health_checks=True,
+        )
+    }
+else:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': BASE_DIR / 'db.sqlite3',
+        }
+    }
 
 # Password validation
 # https://docs.djangoproject.com/en/5.2/ref/settings/#auth-password-validators
