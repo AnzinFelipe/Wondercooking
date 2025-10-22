@@ -34,6 +34,9 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r requirements.txt
 
+      - name: Instalar dependências JS
+        run: npm install
+
       - name: Rodando localmente e fazendo testes
         run: |
           python manage.py makemigrations
