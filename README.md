@@ -143,9 +143,6 @@ Bug tracker dos problemas que ocorreram no prolongar do projeto
 
 Atualizamos o backlog e iniciamos uma segunda sprint com 6 histórias de usuário e passando 3 histórias para a etapa de implementação. 
 
-Backlog da sprint 3:
-\
-<img src="Substituir por imagem" width = "1000">
 
 Quadro sprint 3:
 \
