@@ -59,11 +59,6 @@ CLOUDINARY_CLOUD_NAME = os.getenv('CLOUDINARY_CLOUD_NAME')
 CLOUDINARY_API_KEY = os.getenv('CLOUDINARY_API_KEY')
 CLOUDINARY_API_SECRET = os.getenv('CLOUDINARY_API_SECRET')
 
-print("Cloudinary config:")
-print("Cloud name:", os.getenv('CLOUDINARY_CLOUD_NAME'))
-print("API Key:", os.getenv('CLOUDINARY_API_KEY'))
-print("API Secret:", os.getenv('CLOUDINARY_API_SECRET'))
-
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
