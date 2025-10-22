@@ -161,7 +161,7 @@ Acesse nosso Jira clicando aqui:
 
 Acesse as gravações clicando aqui:<br>
 <a href = "link"> Cypress</a><br>
-<a href = "link"> CD/CI</a><br>
+<a href = "link"> CD/CI // Processo do Deploy</a><br>
 <a href = "link"> Deploy do site</a>
 
 
