@@ -2,7 +2,7 @@ from django.views import View
 from django.http import Http404
 from django.shortcuts import render, redirect, get_object_or_404
 from .models import Comentario, postagem, Perfil
-from .models import Comentario, postagem, Perfil, HashTag
+from .models import Comentario, postagem, Perfil, HashTag, Alergias
 import re
 from django.contrib.auth import login, authenticate
 from django.urls import reverse
@@ -20,7 +20,17 @@ from datetime import timedelta
 def home(request):
     if not request.user.is_authenticated:
         return redirect('registrar')
-    posts = postagem.objects.all().order_by("-data")
+
+    perfil_usuario = Perfil.objects.get(user=request.user)
+    
+    
+    alergias_usuario = perfil_usuario.alergia.all()
+    
+    if alergias_usuario:
+        posts = postagem.objects.exclude(alergia__in=alergias_usuario).distinct().order_by("-data")
+    else:
+        posts = postagem.objects.all().order_by("-data")
+    
     contexto = {
         'posts': posts
     }
@@ -107,21 +117,27 @@ def registrar(request):
 @login_required(login_url='/accounts/login/')
 def criar_post(request):
     if request.method == 'POST':
-        Titulo= request.POST.get('Título da publicação')
-        Descrição= request.POST.get('Descrição do post')
-        imagem= request.FILES.get('Imagem do post')
+        Titulo = request.POST.get('Título da publicação')
+        Descrição = request.POST.get('Descrição do post')
+        imagem = request.FILES.get('Imagem do post')
+        alergias_selecionadas = request.POST.getlist('alergias')
+        
         perfil = Perfil.objects.get(user=request.user)
+        
         if not all([Titulo, Descrição, imagem]):
-            return render (request, 'criar_post.html', {'erro': 'Escreva alguma coisa'})  
+            return render(request, 'criar_post.html', {'erro': 'Escreva alguma coisa'})  
+        
         novo_post = postagem(titulo=Titulo, descricao=Descrição, imagem=imagem, autor=perfil)
         novo_post.save()
+        if alergias_selecionadas:
+            alergias_obj = Alergias.objects.filter(id__in=alergias_selecionadas)
+            novo_post.alergia.set(alergias_obj)
+        
         try:
             descricao_text = Descrição or ''
             hashtags_field = request.POST.get('hashtags', '') or ''
 
-
             found_desc = re.findall(r'#([^\s#.,;:!?)\]\[]+)', descricao_text)
-
             found_field = re.findall(r'#?([A-Za-z0-9_-]+)', hashtags_field)
 
             all_tags = set([t.strip().lower() for t in found_desc if t.strip()]) | set([t.strip().lower() for t in found_field if t.strip()])
@@ -140,8 +156,11 @@ def criar_post(request):
                     obj.save()
         except Exception:
             pass
+        
         return HttpResponseRedirect(reverse('home'))
-    return render(request, 'criar_post.html')
+    
+    todas_alergias = Alergias.objects.all()
+    return render(request, 'criar_post.html', {'todas_alergias': todas_alergias})
 
     
 class LikePostView(LoginRequiredMixin, View):
@@ -196,10 +215,18 @@ def tags(request, tag):
 def destaques(request):
     if not request.user.is_authenticated:
         return redirect('registrar')
+    
+    perfil_usuario = Perfil.objects.get(user=request.user)
 
     ultimasemana = timezone.now() - timedelta(days=7)
 
-    posts = postagem.objects.filter(data__gte=ultimasemana).annotate(likes_count=models.Count('likes')).order_by('-likes_count')
+    posts = postagem.objects.filter(data__gte=ultimasemana)
+    alergias_usuario = perfil_usuario.alergia.all()
+    if alergias_usuario:
+        posts = posts.exclude(alergia__in=alergias_usuario).distinct()
+
+
+    posts = posts.annotate(likes_count=models.Count('likes')).order_by('-likes_count')
 
     contexto = {
         'posts': posts

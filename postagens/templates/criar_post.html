@@ -16,10 +16,20 @@
         <input type="text" name="Título da publicação" id="titulo" class="entrada" required>
 
         <label for="descricao" class="rotulo">Descrição:</label>
-    <textarea name="Descrição do post" id="descricao" class="area descricao" required></textarea>
+        <textarea name="Descrição do post" id="descricao" class="area descricao" required></textarea>
 
-    <label for="hashtags" class="rotulo">Hashtags (opcional, separadas por espaço ou #):</label>
-    <input type="text" name="hashtags" id="hashtags" class="entrada" placeholder="#receita #vegan">
+        <label for="hashtags" class="rotulo">Hashtags (opcional, separadas por espaço ou #):</label>
+        <input type="text" name="hashtags" id="hashtags" class="entrada" placeholder="#receita #vegan">
+
+        <label class="rotulo">Alergias relacionadas (selecione as que se aplicam):</label>
+        <div class="alergias-container">
+            {% for alergia in todas_alergias %}
+            <div class="alergia-item">
+                <input type="checkbox" name="alergias" id="alergia_{{ alergia.id }}" value="{{ alergia.id }}" class="checkbox-alergia">
+                <label for="alergia_{{ alergia.id }}" class="label-alergia">{{ alergia.alergia }}</label>
+            </div>
+            {% endfor %}
+        </div>
 
         <label for="imagem" class="rotulo">Imagem:</label>
         <input type="file" name="Imagem do post" id="imagem" class="entrada" required>

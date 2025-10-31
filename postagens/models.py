@@ -15,9 +15,14 @@ except Exception:
         return models.ImageField(upload_to='images/', blank=True, null=True)
 
 # Create your models here.
+class Alergias(models.Model):
+    alergia = models.CharField(max_length=100, blank=True, null=True)
+    def __str__(self):
+        return self.alergia
 
 class Perfil(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, null=True)
+    alergia = models.ManyToManyField(Alergias, blank=True)
     def __str__(self):
         return self.user.username
 
@@ -29,6 +34,7 @@ class postagem(models.Model):
     imagem = _image_field()
     likes = models.ManyToManyField(User, related_name='postagens_likes', blank=True)
     favoritos = models.ManyToManyField(User, related_name='postagens_favoritos', blank=True)
+    alergia = models.ManyToManyField(Alergias, blank=True)
     def __str__(self):
         return f"{self.titulo} - Autor: {self.autor}"
     
