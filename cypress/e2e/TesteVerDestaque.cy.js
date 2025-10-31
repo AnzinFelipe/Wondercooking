@@ -54,6 +54,7 @@ Cypress.Commands.add('criarPostagem', () => {
 
 Cypress.Commands.add('acessarDestaque', () => {
     cy.get('a').contains('Destaques').click();
+    cy.url().should('include', '/destaques/');
 });
 
 describe('User flow', () => {

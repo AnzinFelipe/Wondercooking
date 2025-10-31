@@ -199,3 +199,70 @@ header h1 a{
   .bloco_pesquisa{ justify-self:stretch; }
   header h1{ text-align:left; }
 }
+
+.alergias-section {
+    background-color: #f8f9fa;
+    padding: 20px;
+    border-radius: 8px;
+    border: 1px solid #dee2e6;
+    margin-bottom: 30px;
+}
+
+.alergias-section h2 {
+    margin-top: 0;
+    color: #333;
+    border-bottom: 2px solid #502A50;
+    padding-bottom: 10px;
+}
+
+.alergias-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 10px;
+    margin: 15px 0;
+}
+
+.alergia-item {
+    display: flex;
+    align-items: center;
+    padding: 8px;
+    background: white;
+    border-radius: 4px;
+    border: 1px solid #ddd;
+}
+
+.checkbox-alergia {
+    margin-right: 10px;
+    transform: scale(1.2);
+}
+
+.label-alergia {
+    cursor: pointer;
+    font-size: 14px;
+    user-select: none;
+}
+
+.alergia-item:hover {
+    background-color: #e9ecef;
+    border-color: #502A50;
+}
+
+.btn-primary {
+    background-color: #502A50;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.btn-primary:hover {
+    background-color: #502A50;
+}
+
+hr {
+    border: none;
+    border-top: 2px solid #dee2e6;
+    margin: 30px 0;
+}

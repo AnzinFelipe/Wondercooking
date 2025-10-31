@@ -17,7 +17,7 @@
             <li>
                 <div class="signs">
                     {% if user.is_authenticated %}
-                        {{ user.username }}
+                        <a href="{% url 'perfil' %}">{{ user.username }}</a>
                         <a href="{% url 'destaques' %}">Destaques</a>
                         <a href="{% url 'favoritos' %}">Favoritos</a>
                         <a href="{% url 'login' %}">Log out</a>

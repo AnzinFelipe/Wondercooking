@@ -33,41 +33,31 @@ Cypress.Commands.add('logar', () => {
   cy.get('#username').type('TestandoCypress4'); 
   cy.get('#password').type('12345678');  
   cy.get('button[type="submit"]').click();  
-  
+    
   cy.url().should('not.include', '/login/');
 });
 
-Cypress.Commands.add('criarPostagem', () => {
+Cypress.Commands.add('selecionarAlergiaOvoPerfil', () => {
+  cy.contains('TestandoCypress4').click();
+  cy.url().should('include', '/perfil/');
+  cy.contains('label', 'Ovo').click();
+  cy.contains('button', 'Salvar Alergias').click();
+  cy.contains('a', 'Wondercooking').click();
+});
+
+Cypress.Commands.add('criarPostagemComOvo', () => {
   cy.visit('http://127.0.0.1:8000/criar_post/');
 
   cy.get('#titulo').should('be.visible');
 
-  cy.get('#titulo').type('Testando titulo');
-  cy.get('#descricao').type('Testando descrição');
-  cy.get('#hashtags').type('#testando');
+  cy.get('#titulo').type('Testando titulo com Ovo');
+  cy.get('#descricao').type('Testando descrição com ovo');
+  cy.get('#hashtags').type('#ovo');
+  cy.contains('label', 'Ovo').click();
   cy.get('#imagem').selectFile('cypress/fixtures/imagem_teste.jpg', { force: true });
-
   cy.get('button[type="submit"]').click();
 
   cy.url().should('not.include', '/criar_post/');
-});
-
-Cypress.Commands.add('fazendoComentarioeVisualizando', () => {
-  cy.visit('http://127.0.0.1:8000/');
-  
-  cy.get('.post a').first().invoke('attr', 'href').then((href) => {
-    cy.visit(`http://127.0.0.1:8000${href}`);
-  });
-
-  cy.get('#texto').should('be.visible');
-
-  cy.get('#texto').type('Testando comentário');
-
-  cy.get('button').contains('Publicar').click();
-  
-  cy.reload();
-
-  cy.contains('Testando comentário').should('be.visible');
 });
 
 describe('User flow', () => {
@@ -75,12 +65,12 @@ describe('User flow', () => {
     cy.deleteUsers(); 
     cy.criarUser(); 
     cy.logar();
-    cy.criarPostagem();
   });
 
-  it('deve criar um comentario', () => {
-    cy.fazendoComentarioeVisualizando();
-    
-    cy.contains('Testando comentário').should('be.visible');
+  it('deve criar uma postagem e filtrar por alergia', () => {
+    cy.selecionarAlergiaOvoPerfil();
+    cy.criarPostagemComOvo();
+    cy.contains('Testando titulo com Ovo').should('not.exist');
+    cy.url().should('include', 'http://127.0.0.1:8000/');
   });
 });

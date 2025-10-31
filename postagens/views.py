@@ -232,3 +232,26 @@ def destaques(request):
         'posts': posts
     }
     return render(request, 'destaques.html', contexto)
+
+def perfil(request):
+    if not request.user.is_authenticated:
+        return redirect('registrar')
+    
+    perfil_usuario = Perfil.objects.get(user=request.user)
+    
+    if request.method == 'POST':
+        alergias_selecionadas = request.POST.getlist('alergias')
+        perfil_usuario.alergia.set(alergias_selecionadas)
+        perfil_usuario.save()
+    
+    posts = postagem.objects.filter(autor=perfil_usuario).order_by("-data")
+    
+    todas_alergias = Alergias.objects.all()
+    alergias_usuario = perfil_usuario.alergia.all()
+    
+    contexto = {
+        'posts': posts,
+        'todas_alergias': todas_alergias,
+        'alergias_usuario': alergias_usuario
+    }
+    return render(request, 'perfil_usuario.html', contexto)

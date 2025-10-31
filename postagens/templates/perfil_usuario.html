@@ -1,7 +1,107 @@
 {% extends "base.html" %}
+{% load static %}
+{% load app_extra %}
+
+{% block title %}Seu Perfil{% endblock %}
 
 {% block conteudo %}
-    <h1>Seu Perfil</h1>
-    <h2>{{user.username}}</h2>
-    <p>Postagens Favoritas</p>
+  <h1>Seu Perfil</h1>
+
+  <div class="alergias-section">
+    <h2>Suas Alergias</h2>
+    <form method="POST">
+      {% csrf_token %}
+      <div class="alergias-container">
+        {% for alergia in todas_alergias %}
+        <div class="alergia-item">
+          <input type="checkbox" name="alergias" id="alergia_{{ alergia.id }}" value="{{ alergia.id }}" 
+                 {% if alergia in alergias_usuario %}checked{% endif %} class="checkbox-alergia">
+          <label for="alergia_{{ alergia.id }}" class="label-alergia">{{ alergia.alergia }}</label>
+        </div>
+        {% endfor %}
+      </div>
+      <button type="submit" class="btn btn-primary">Salvar Alergias</button>
+    </form>
+  </div>
+
+  <hr>
+
+  <h2>Seus posts:</h2>
+
+  <div class="actions-top">
+    <h3><a href="{% url 'criar_post' %}" class="btn btn-primary">Criar uma postagem</a></h3>
+  </div>
+
+  {% if posts %}
+    <div class="posts-grid">
+      {% for post in posts %}
+        <article class="post">
+          <a href="{% url 'post_detalhe' post.id %}">
+            <h3>{{ post.titulo }}</h3>
+          </a>
+
+          <p>
+            <strong>Autor:</strong>
+            {% if post.autor and post.autor.user %}
+              {{ post.autor.user.username }}
+            {% else %}
+              Anônimo
+            {% endif %}
+          </p>
+
+          <p><strong>Postado em:</strong> {{ post.data|date:"d/m/Y H:i" }}</p>
+
+          <p>{{ post.descricao|link_hashtags }}</p>
+
+          {% if post.imagem %}
+            {% if post.imagem.url %}
+              <img class="post-image" src="{{ post.imagem.url }}" alt="{{ post.titulo }}" loading="lazy">
+            {% else %}
+              <div class="post-image" style="display:flex;align-items:center;justify-content:center;background:#f3f3f7;color:#777;border-radius:10px;">
+                Sem imagem
+              </div>
+            {% endif %}
+          {% else %}
+            <div class="post-image" style="display:flex;align-items:center;justify-content:center;background:#f3f3f7;color:#777;border-radius:10px;">
+              Sem imagem
+            </div>
+          {% endif %}
+
+          {% if post.hashtag_set.all %}
+            <p class="post-tags">Tags:
+            {% for ht in post.hashtag_set.all %}
+              <a href="{% url 'tags' ht.hashtagnome %}">#{{ ht.hashtagnome }}</a>{% if not forloop.last %}, {% endif %}
+            {% endfor %}
+            </p>
+          {% endif %}
+
+          <div class="post-footer">
+            {% if user.is_authenticated %}
+              <form method="post" action="{% url 'like_post' post.id %}">
+                {% csrf_token %}
+                <input type="hidden" name="next" value="{{ request.get_full_path }}">
+                <button type="submit">
+                  {% if request.user in post.likes.all %}👍 Curtido{% else %}👍 Curtir{% endif %}
+                  ({{ post.likes.count }})
+                </button>
+              </form>
+
+              <form method="post" action="{% url 'favorite_post' post.id %}">
+                {% csrf_token %}
+                <input type="hidden" name="next" value="{{ request.get_full_path }}">
+                <button type="submit">
+                  {% if request.user in post.favoritos.all %}★ Favoritado{% else %}☆ Favoritar{% endif %}
+                </button>
+              </form>
+            {% else %}
+              <a href="{% url 'login' %}" class="btn">👍 Curtir</a>
+              <a href="{% url 'login' %}" class="btn">☆ Favoritar</a>
+            {% endif %}
+          </div>
+        </article>
+      {% endfor %}
+    </div>
+  {% else %}
+    <p>Nenhum post encontrado.</p>
+  {% endif %}
 {% endblock %}
