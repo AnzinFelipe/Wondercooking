@@ -67,6 +67,10 @@ Cypress.Commands.add('fazendoComentarioeVisualizando', () => {
   
   cy.reload();
 
+  cy.get('.post a').first().invoke('attr', 'href').then((href) => {
+    cy.visit(`http://127.0.0.1:8000${href}`);
+  });
+
   cy.contains('Testando comentário').should('be.visible');
 });
 
