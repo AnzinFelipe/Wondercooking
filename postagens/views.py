@@ -15,7 +15,11 @@ from django.utils import timezone
 from datetime import timedelta
 
 # Create your views here.
-
+def pesquisar_ingredientes(request):
+    if request.method == "POST":
+        return render(request, 'pesquisar_ingredientes.html')
+    else:
+        return render(request, 'pesquisar_ingredientes.html')
 
 def home(request):
     if not request.user.is_authenticated:

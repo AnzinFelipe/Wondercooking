@@ -14,4 +14,5 @@ urlpatterns = [
     path('tags/<str:tag>/', views.tags, name='tags'),
     path('destaques/', views.destaques, name='destaques'),
     path('perfil/', views.perfil, name='perfil'),
+    path('pesquisar_ingredientes/', views.pesquisar_ingredientes, name='pesquisar_ingredientes'),
 ]

@@ -31,12 +31,14 @@
                 <h1><a href="{% url 'home' %}">Wondercooking</a></h1>
                 {% block criar %}{% endblock criar %}
             </li>
-            <li>
-                <div class="bloco_pesquisa">
-                    <input type="text" class="pesquisa" placeholder="Pesquisar...">
-                    <button type="button">Buscar</button>
-                </div>
-            </li>
+
+                <form class="d-flex" metho=POST action="{% url 'pesquisar_ingredientes' %}">
+
+                    {% csrf_token %}
+
+                    <input class="form-control-me-2" type="search"  placeholder="Pesquisar ingredientes" name="Pesquisado">
+                    <button class="btn btn-outline-success" type="submit">Pesquisar</button>
+                </form>
         </ul>
     </header>
     {% endblock %}
