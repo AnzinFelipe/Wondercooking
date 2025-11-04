@@ -1,6 +1,14 @@
 {% extends 'base.html' %}
 
-{% block content %}
-<h1>Você pesquisou!</h1>
+{% block conteudo %}
+    <center>
+        
+    {% if pesquisado %}
+        <h1>Você pesquisou por {{ pesquisado }}</h1>
 
+    {% else %}
+        <h1>Nada foi pesquisado ainda</h1>
+    {% endif %}
+
+    </center>
 {% endblock %}
