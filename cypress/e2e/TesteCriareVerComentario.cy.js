@@ -47,31 +47,27 @@ Cypress.Commands.add('criarPostagem', () => {
   cy.get('#hashtags').type('#testando');
   cy.get('#imagem').selectFile('cypress/fixtures/imagem_teste.jpg', { force: true });
 
-  cy.get('button[type="submit"]').click();
-
+  cy.contains('button', 'Criar Postagem').click();
+  cy.wait(2000);
   cy.url().should('not.include', '/criar_post/');
 });
 
 Cypress.Commands.add('fazendoComentarioeVisualizando', () => {
   cy.visit('http://127.0.0.1:8000/');
   
-  cy.get('.post a').first().invoke('attr', 'href').then((href) => {
-    cy.visit(`http://127.0.0.1:8000${href}`);
-  });
-
+  cy.get('.post a').first().click();
+  
   cy.get('#texto').should('be.visible');
 
   cy.get('#texto').type('Testando comentário');
-
   cy.get('button').contains('Publicar').click();
   
-  cy.reload();
-
-  cy.get('.post a').first().invoke('attr', 'href').then((href) => {
-    cy.visit(`http://127.0.0.1:8000${href}`);
-  });
-
+  cy.wait(2000);
+  cy.visit('http://127.0.0.1:8000/');
+  cy.get('.post a').first().click();
+  cy.wait(2000);
   cy.contains('Testando comentário').should('be.visible');
+  
 });
 
 describe('User flow', () => {

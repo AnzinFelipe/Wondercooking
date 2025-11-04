@@ -38,18 +38,18 @@ Cypress.Commands.add('logar', () => {
 });
 
 Cypress.Commands.add('criarPostagem', () => {
-    cy.visit('http://127.0.0.1:8000/criar_post/');
+  cy.visit('http://127.0.0.1:8000/criar_post/');
 
-    cy.get('#titulo').should('be.visible');
+  cy.get('#titulo').should('be.visible');
 
-    cy.get('#titulo').type('Testando titulo');
-    cy.get('#descricao').type('Testando descrição');
-    cy.get('#hashtags').type('#testando');
-    cy.get('#imagem').selectFile('cypress/fixtures/imagem_teste.jpg', { force: true });
+  cy.get('#titulo').type('Testando titulo');
+  cy.get('#descricao').type('Testando descrição');
+  cy.get('#hashtags').type('#testando');
+  cy.get('#imagem').selectFile('cypress/fixtures/imagem_teste.jpg', { force: true });
 
-    cy.get('button[type="submit"]').click();
-
-    cy.url().should('not.include', '/criar_post/');
+  cy.contains('button', 'Criar Postagem').click();
+  cy.wait(2000);
+  cy.url().should('not.include', '/criar_post/');
 });
 
 Cypress.Commands.add('verFavoritos', () => {
