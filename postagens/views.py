@@ -17,7 +17,10 @@ from datetime import timedelta
 # Create your views here.
 def pesquisar_ingredientes(request):
     if request.method == "POST":
-        return render(request, 'pesquisar_ingredientes.html')
+        pesquisado = request.POST['pesquisado']
+        postagens = postagem.objects.filter(descricao__icontains=pesquisado)
+
+        return render(request, 'pesquisar_ingredientes.html', {'pesquisado': pesquisado, 'postagens': postagens})
     else:
         return render(request, 'pesquisar_ingredientes.html')
 

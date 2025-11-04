@@ -1,6 +1,17 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<h1>Você pesquisou!</h1>
+<center>
+{% if pesquisado %}
+    <h1>Você pesquisou por: {{ pesquisado }}</h1>
 
+    <br/>
+    {% for postagem in postagens%}
+        {{ postagem.descricao }} <br/>
+    {% endfor %}
+{% else %}
+    <h1>Nenhum ingrediente pesquisado.</h1>
+{% endif %}
+
+</center>
 {% endblock %}
