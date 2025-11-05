@@ -32,14 +32,13 @@
                 {% block criar %}{% endblock criar %}
             </li>
 
-                <form class="d-flex" metho=POST action="{% url 'pesquisar_ingredientes' %}">
-
-                    {% csrf_token %}
-
-                    <input class="form-control me-2" type="search" placeholder="Pesquisar ingredientes" aria-label="Pesquisar" name='pesquisado'>
-                    <button class="btn btn-outline-success" type="submit">Pesquisar</button>
-                </form>
-        </ul>
+                <div class="search-container">
+                <form method="POST" action="{% url 'pesquisar_ingredientes' %}">
+                        {% csrf_token %}
+                        <input type="text" name="objeto" placeholder="Pesquisar receitas..." value="{{ objeto|default:'' }}">
+                        <button type="submit">Pesquisar</button>
+                    </form>
+                </div>
     </header>
     {% endblock %}
 

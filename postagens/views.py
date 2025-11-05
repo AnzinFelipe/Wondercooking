@@ -15,13 +15,24 @@ from django.utils import timezone
 from datetime import timedelta
 
 # Create your views here.
+from django.db.models import Q
+
 def pesquisar_ingredientes(request):
     if request.method == "POST":
-        pesquisado = request.POST['pesquisado']
-        ingrediente = postagem.objects.filter(descricao__contains=pesquisado)
-        return render(request, 'pesquisar_ingredientes.html', {'pesquisado': pesquisado, 'ingrediente': ingrediente})
-    else:
-        return render(request, 'pesquisar_ingredientes.html')
+        objeto = request.POST.get('objeto', '').strip()
+        if objeto:
+            ingrediente = postagem.objects.filter(
+                Q(titulo__icontains=objeto) |  
+                Q(descricao__icontains=objeto)  
+            ).distinct().order_by('-data')  
+            return render(request, 'pesquisar_ingredientes.html', {
+                'objeto': objeto,
+                'ingrediente': ingrediente
+            })
+    return render(request, 'pesquisar_ingredientes.html', {
+        'objeto': None,
+        'ingrediente': []
+    })
 
 def home(request):
     if not request.user.is_authenticated:

@@ -1,14 +1,15 @@
-{% extends 'base.html' %}
+{%extends 'base.html' %}
 
-{% block conteudo %}
-    <center>
-        
-    {% if pesquisado %}
-        <h1>Você pesquisou por {{ pesquisado }}</h1>
+{%block conteudo%}
 
-    {% else %}
-        <h1>Nada foi pesquisado ainda</h1>
+    {% if objeto %}
+        <h1>Resultado da pesquisa "{{objeto}}"</h1>
+        {% if ingrediente %}
+            {% for post in ingrediente %}
+                <li><a href="{% url 'post_detalhe' post.id %}">{{ post.titulo }}</a></li>
+            {% endfor %}
+        {% else %}
+            <p>Nenhuma receita encontrada para "{{ objeto }}"</p>
+        {% endif %}
     {% endif %}
-
-    </center>
-{% endblock %}
+{%endblock%}
