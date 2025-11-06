@@ -20,11 +20,15 @@ from django.db.models import Q
 def pesquisar_ingredientes(request):
     if request.method == "POST":
         objeto = request.POST.get('objeto', '').strip()
+        perfil_usuario = Perfil.objects.get(user=request.user)
+        alergias_usuario = perfil_usuario.alergia.all()
         if objeto:
             ingrediente = postagem.objects.filter(
                 Q(titulo__icontains=objeto) |  
-                Q(descricao__icontains=objeto)  
-            ).distinct().order_by('-data')  
+                Q(descricao__icontains=objeto) 
+            ).distinct().order_by('-data')
+            if alergias_usuario:
+                objeto = postagem.objects.exclude(alergia__in=alergias_usuario).distinct().order_by("-data")  
             return render(request, 'pesquisar_ingredientes.html', {
                 'objeto': objeto,
                 'ingrediente': ingrediente
