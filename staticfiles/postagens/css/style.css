@@ -4,7 +4,7 @@ header{
   background:#ba71a2;
   padding:10px 16px;
   position: sticky;
-  top:0;
+  top:0;  
   z-index:1000;
 }
 
@@ -265,4 +265,23 @@ hr {
     border: none;
     border-top: 2px solid #dee2e6;
     margin: 30px 0;
+}
+
+input[name="objeto"] {
+    background-color: pink;
+    border:solid 2px purple;
+    border-radius:10px;
+    width:300px;
+    height:32px;
+}
+
+button[type="submit"]{
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: purple;
+    color: white;
+    border-radius: 10px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background-color 0.3s;
 }
