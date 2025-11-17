@@ -45,7 +45,7 @@ Cypress.Commands.add('criarPostagem', () => {
   cy.get('#titulo').type('Testando Pesquisar Ingrediente');
   cy.get('#descricao').type('Testando descrição, Ingredientes: tomate, queijo');
   cy.get('#hashtags').type('#testando');
-  cy.get('#imagem').selectFile('cypress/fixtures/imagem_teste.jpg', { force: true });
+  cy.get('input[type="file"]#file-input').selectFile('cypress/fixtures/imagem_teste.jpg', { force: true });
 
   cy.contains('button', 'Criar Postagem').click();
   cy.wait(2000);
