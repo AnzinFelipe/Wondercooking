@@ -203,5 +203,15 @@ HISTÓRIA 2: Como usuário, quero um filtro de receitas por ingredientes.
 Acesse nosso Jira clicando aqui:
 <a href = "https://cesar-team-pz3i66at.atlassian.net/jira/software/projects/WON/boards/34" target = "_blanck"> ir para o Jira</a>
 
+## 📸 Screencasts do site
+
+Acesse as gravações clicando aqui:<br>
+<a href = "https://youtu.be/Qjeoq8JZPMM"> Cypress</a>
+<a href = "https://youtu.be/AlMmL2M8T5w"> CD/CI // Processo do Deploy</a><br>
+<a href = "https://youtu.be/iu6VzqGaWm0"> Deploy do site</a>
+
+## Contribuing
+
+Se você ficou interessado no nosso projeto e quer contribuir de alguma forma, acesse o nosso contribuing: <a href = "https://github.com/AnzinFelipe/Wondercooking?tab=contributing-ov-file"> ir para o contribuing</a>
 
 </details>
