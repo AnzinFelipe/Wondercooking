@@ -84,7 +84,7 @@ Dupla 003: [Link de acesso.](https://docs.google.com/document/d/1_7FUateEpQVbhTd
 
 Bug tracker dos problemas que ocorreram no prolongar do projeto
 
-<img src="Imagens/Print_tela_bug_tracker2025-09-28231049.png" alt = "Quadro sprint" width = "1000">
+<img src="Imagens/Bugtracker.png" alt = "Quadro sprint" width = "1000">
 
 ## 📝 Jira:
 
@@ -92,11 +92,11 @@ Atualizamos o backlog e iniciamos uma segunda sprint com 6 histórias de usuári
 
 Backlog da sprint 2:
 \
-<img src="Imagens/Print_tela_Backlog_sprint2_2025-09-28_231530.png" width = "1000">
+<img src="Imagens/Backlog2.png" width = "1000">
 
 Quadro sprint 2:
 \
-<img src="Imagens/Print_tela_quadro_sprint2_2025-09-28231943.png" width = "1000">
+<img src="Imagens/Quadro_sprint2.png" width = "1000">
 
 HISTÓRIAS IMPLEMENTADAS:
 
@@ -137,16 +137,16 @@ Dupla 003: [Link de acesso.](https://docs.google.com/document/d/1_7FUateEpQVbhTd
 
 Bug tracker dos problemas que ocorreram no prolongar do projeto
 
-<img src="Imagens/imagem_2025-10-22_005923420.png" alt = "Quadro sprint" width = "1000">
+<img src="Imagens/Bugtracker2.png" alt = "Quadro sprint" width = "1000">
 
 ## 📝 Jira:
 
-Atualizamos o backlog e iniciamos uma segunda sprint com 6 histórias de usuário e passando 3 histórias para a etapa de implementação. 
+Atualizamos o backlog e iniciamos uma terceira sprint com 6 histórias de usuário e passando 3 histórias para a etapa de implementação. 
 
 
 Quadro sprint 3:
 \
-<img src="Imagens/imagem_2025-10-22_005951242.png" alt = "Quadro sprint" width = "1000">
+<img src="Imagens/Quadro_sprint3.png" alt = "Quadro sprint 3" width = "1000">
 
 
 HISTÓRIAS IMPLEMENTADAS:
@@ -177,12 +177,31 @@ Segue abaixo links para acessar a versão final da documentação da programaç�
 Dupla 001: [Link de acesso.](https://docs.google.com/document/d/1VMShdnzmD7LD9jPJXrcCvs5p0LIE16-E2SSJfQTupZ0/edit?usp=sharing)
 
 
-
 Dupla 002: [Link de acesso.](https://docs.google.com/document/d/1eHmU18Bjz6BKVYZzzzeMdUzSkjeLxBpYUKqnVwqAahE/edit?usp=sharing)
 
 
-
 Dupla 003: [Link de acesso.](https://docs.google.com/document/d/1_7FUateEpQVbhTdNlaI2qU6icwHFJ50icyU12_h-VXE/edit?usp=sharing)
+
+## 🐞 Bug Tracker
+
+Bug tracker dos problemas que ocorreram no prolongar do projeto
+
+<img src="Imagens/Bugtracker3.png" alt = "Quadro sprint" width = "1000">
+
+## 📝 Jira:
+
+Atualizamos o backlog e iniciamos uma quarta sprint com as 7 histórias de usuário nos intens concluídos.
+
+Quadro sprint 4:
+\
+<img src="Imagens/Quadro_sprint4.png" alt = "Quadro sprint 4" width = "1000">
+
+HISTÓRIAS IMPLEMENTADAS:
+
+HISTÓRIA 2: Como usuário, quero um filtro de receitas por ingredientes.
+
+Acesse nosso Jira clicando aqui:
+<a href = "https://cesar-team-pz3i66at.atlassian.net/jira/software/projects/WON/boards/34" target = "_blanck"> ir para o Jira</a>
 
 
 </details>
