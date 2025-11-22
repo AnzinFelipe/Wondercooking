@@ -146,7 +146,7 @@ Atualizamos o backlog e iniciamos uma terceira sprint com 6 histórias de usuár
 
 Quadro sprint 3:
 \
-<img src="Imagens/Quadro_sprint_3.png" alt = "Quadro sprint 3" width = "1000">
+<img src="Imagens/Quadro_sprint3.png" alt = "Quadro sprint 3" width = "1000">
 
 
 HISTÓRIAS IMPLEMENTADAS:
