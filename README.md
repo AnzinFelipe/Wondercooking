@@ -198,7 +198,11 @@ Quadro sprint 4:
 
 HISTÓRIAS IMPLEMENTADAS:
 
-HISTÓRIA 2: Como usuário, quero um filtro de receitas por ingredientes.
+HISTÓRIA 2: Como usuário, quero um filtro de receitas por ingredientes.<br>
+HISTÓRIA 4: Como usuário, gostaria que o app recomendasse receitas sabendo as minhas alergias.<br>
+
+
+
 
 Acesse nosso Jira clicando aqui:
 <a href = "https://cesar-team-pz3i66at.atlassian.net/jira/software/projects/WON/boards/34" target = "_blanck"> ir para o Jira</a>
