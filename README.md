@@ -137,7 +137,7 @@ Dupla 003: [Link de acesso.](https://docs.google.com/document/d/1_7FUateEpQVbhTd
 
 Bug tracker dos problemas que ocorreram no prolongar do projeto
 
-<img src="Imagens/Bugtracker2.png" alt = "Quadro sprint" width = "1000">
+<img src="Imagens/Bugtracker_2.png" alt = "Quadro sprint" width = "1000">
 
 ## 📝 Jira:
 
@@ -146,7 +146,7 @@ Atualizamos o backlog e iniciamos uma terceira sprint com 6 histórias de usuár
 
 Quadro sprint 3:
 \
-<img src="Imagens/Quadro_sprint3.png" alt = "Quadro sprint 3" width = "1000">
+<img src="Imagens/Quadro_sprint_3.png" alt = "Quadro sprint 3" width = "1000">
 
 
 HISTÓRIAS IMPLEMENTADAS:
@@ -194,7 +194,7 @@ Atualizamos o backlog e iniciamos uma quarta sprint com as 7 histórias de usuá
 
 Quadro sprint 4:
 
-<img src="Imagens/Quadro_sprint4.png" alt = "Quadro sprint 4" width = "1000">
+<img src="Imagens/Quadro_sprint_4.png" alt = "Quadro sprint 4" width = "1000">
 
 HISTÓRIAS IMPLEMENTADAS:
 
