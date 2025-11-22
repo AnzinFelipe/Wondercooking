@@ -193,7 +193,7 @@ Bug tracker dos problemas que ocorreram no prolongar do projeto
 Atualizamos o backlog e iniciamos uma quarta sprint com as 7 histórias de usuário nos intens concluídos.
 
 Quadro sprint 4:
-\
+
 <img src="Imagens/Quadro_sprint4.png" alt = "Quadro sprint 4" width = "1000">
 
 HISTÓRIAS IMPLEMENTADAS:
