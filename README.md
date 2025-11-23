@@ -146,7 +146,7 @@ Atualizamos o backlog e iniciamos uma terceira sprint com 6 histórias de usuár
 
 Quadro sprint 3:
 \
-<img src="Imagens/Quadro_sprint3.png" alt = "Quadro sprint" width = "1000">
+[<img src="Imagens/Quadro_sprint3.png" alt = "Quadro sprint" width = "1000">](https://raw.githubusercontent.com/AnzinFelipe/Wondercooking/refs/heads/main/Imagens/Quadro_sprint3.png)
 
 
 HISTÓRIAS IMPLEMENTADAS:
