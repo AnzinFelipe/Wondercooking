@@ -211,9 +211,9 @@ Acesse nosso Jira clicando aqui:
 ## 📸 Screencasts do site
 
 Acesse as gravações clicando aqui:<br>
-<a href = "https://youtu.be/Qjeoq8JZPMM"> Cypress</a>
-<a href = "https://youtu.be/AlMmL2M8T5w"> CD/CI // Processo do Deploy</a><br>
-<a href = "https://youtu.be/iu6VzqGaWm0"> Deploy do site</a>
+<a href = "https://youtu.be/CmREVtHYBEI"> Cypress</a>
+<a href = "https://youtu.be/VW24i0GC9kc"> CD/CI // Processo do Deploy</a><br>
+<a href = "https://youtu.be/ZxMC1rEDHiQ"> Deploy do site</a>
 
 ## Contribuing
 
